@@ -28,7 +28,7 @@ function getCurrentPage() {
                            <span class="description">${books[i].description}</span>
                         </span>
                      </a>
-                      <a href="#" class="buy-btn">Mượn sách <span class="price">${books[i].quantity}</span></a>
+                      <a class="buy-btn" onclick="addToCart(${books[i].id})">Mượn sách <span class="price">${books[i].quantity}</span></a>
                   </div>
                </li>`
             }
