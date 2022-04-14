@@ -24,8 +24,8 @@ function doLogin(){
             sessionStorage.setItem('currentUser', JSON.stringify(currentUser));
             location.href = '/Module4_CS_LibraryManagement_FE/index.html';
         },
-        error: function (){
-            location.href = '/Module4_CS_LibraryManagement_FE/pages/error-401.html';
+        error: function (errorMessage){
+            alert(errorMessage.responseJSON.message);
         }
     })
 }
