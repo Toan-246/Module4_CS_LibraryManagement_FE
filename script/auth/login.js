@@ -25,7 +25,7 @@ function doLogin(){
             location.href = '/Module4_CS_LibraryManagement_FE/index.html';
         },
         error: function (errorMessage){
-            alert(errorMessage.message);
+            alert(errorMessage.responseJSON.message);
         }
     })
 }
