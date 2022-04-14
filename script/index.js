@@ -57,6 +57,8 @@ function getAllPublisher(){
     })
 }
 $(document).ready(function (){
+    drawLoginDetails();
+
     getCurrentPage();
     getAllCategories();
     getAllPublisher();
@@ -72,6 +74,27 @@ function previousPage(){
     getCurrentPage();
 }
 
+function drawLoginDetails(){
+    let currentUser = sessionStorage.getItem("currentUser");
+    currentUser = JSON.parse(currentUser);
+    let content = "";
+    if (currentUser != null){ // already logged in
+        let username = currentUser.username;
+        content += `<p>Xin chào, <a href="#" id="username-holder">${username}</a> | </p>
+        <p><a href="#" class="cart" ><img src="css/images/cart-icon.png" alt="" /></a>Cart</p>
+        <p><span> | </span><a href="#" onclick="doLogout()">  Đăng xuất  </a></p>`
+
+    } else {   // guest
+        content += "<p>Ấn vào <a href='/Module4_CS_LibraryManagement_FE/pages/login.html'>đây</a> để đăng nhập</p>"
+    }
+
+    $("#login-details").html(content);
+}
+
+function doLogout(){
+    sessionStorage.removeItem("currentUser");
+    location.href = '/Module4_CS_LibraryManagement_FE/index.html';
+}
 
 
 
