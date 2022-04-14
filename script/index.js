@@ -1,3 +1,6 @@
+let currentUser = localStorage.getItem('currentUser');
+currentUser = JSON.parse(currentUser);// ep chuoi ve doi tuong
+
 let pageNumber = 0;
 let API_BOOKS = "http://localhost:8080/api/books";
 let API_CATEGORIES = "http://localhost:8080/api/categories";
@@ -14,6 +17,9 @@ function getCurrentPage() {
     $.ajax({
         type: 'GET',
         url: apiSource + `/page/${pageNumber}`,
+        headers: {
+            'Authorization': 'Bearer ' + currentUser.token
+        },
         success: function (page) {
             let books = page.content
             let content = '';
@@ -57,6 +63,9 @@ function getAllCategories() {
     $.ajax({
         type: 'GET',
         url: 'http://localhost:8080/api/categories',
+        headers: {
+            'Authorization': 'Bearer ' + currentUser.token
+        },
         success: function (categories) {
             let content = '';
             for (let i = 0; i < categories.length; i++) {
@@ -71,6 +80,9 @@ function getAllPublisher() {
     $.ajax({
         type: 'GET',
         url: 'http://localhost:8080/api/books',
+        headers: {
+            'Authorization': 'Bearer ' + currentUser.token
+        },
         success: function (publisheres) {
             let content = '';
             for (let i = 0; i < publisheres.length; i++) {
