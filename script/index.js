@@ -1,4 +1,5 @@
 let pageNumber = 0;
+let totalPage = 1;
 let API_BOOKS = "http://localhost:8080/api/books";
 let API_CATEGORIES = "http://localhost:8080/api/categories";
 
@@ -33,10 +34,16 @@ function getCurrentPage() {
                </li>`
             }
             $('#book-list-content').html(content);
-            let totalPage = page.totalPages;
+            totalPage = page.totalPages;
             $('#total-page').html(totalPage)
         }
     })
+}
+
+function getHomePage(){
+    changeApiSource(API_BOOKS);
+    pageNumber = 0;
+    getCurrentPage();
 }
 
 function getCurrentPageByCategory(id) {
@@ -82,38 +89,55 @@ function getAllPublisher() {
 }
 
 function nextPage() {
-    pageNumber++;
-    getCurrentPage();
+    if (pageNumber < totalPage - 1){
+        pageNumber++;
+        getCurrentPage();
+    }
+
 }
 
 function previousPage() {
-    pageNumber--;
-    getCurrentPage();
+    if (pageNumber > 0){
+        pageNumber--;
+        getCurrentPage();
+    }
 }
 
 function drawLoginDetails() {
     let currentUser = sessionStorage.getItem("currentUser");
     currentUser = JSON.parse(currentUser);
-    let content = "";
-    if (currentUser != null) { // already logged in
+    let login_details_html = "";
+    let navbar_ul_html = "";
+
+    if (currentUser == null) {    // guest
+        login_details_html += "<p>Ấn vào <a href='/Module4_CS_LibraryManagement_FE/pages/login.html'>đây</a> để đăng nhập</p>";
+        navbar_ul_html += `<li><a onClick="getHomePage()">Trang chủ</a></li>`;
+
+    } else {    // already logged in
         let username = currentUser.username;
-        content += `<p>Xin chào, <a href="#" id="username-holder">${username}</a> | </p>
+        login_details_html += `<p>Xin chào, <a href="#" id="username-holder">${username}</a> | </p>
         <p><a href="#" class="cart" ><img src="css/images/cart-icon.png" alt="" /></a>Cart</p>
         <p><span> | </span><a href="#" onclick="doLogout()">  Đăng xuất  </a></p>
-        <p><span> | </span><a href="/Module4_CS_LibraryManagement_FE/pages/change-password.html">  Đổi mật khẩu  </a></p>`
+        <p><span> | </span><a href="/Module4_CS_LibraryManagement_FE/pages/change-password.html">  Đổi mật khẩu  </a></p>`;
 
-    } else {   // guest
-        content += "<p>Ấn vào <a href='/Module4_CS_LibraryManagement_FE/pages/login.html'>đây</a> để đăng nhập</p>"
+        navbar_ul_html += `<li><a onClick="getHomePage()">Trang chủ</a></li>
+                            <li><a href="/Module4_CS_LibraryManagement_FE/pages/ticket.html">Quản lý mượn / trả sách</a></li>`
     }
 
-    $("#login-details").html(content);
+    $("#login-details").html(login_details_html);
+    $("#navbar-ul").html(navbar_ul_html);
+
+
+
+
 }
 
 function doLogout() {
     sessionStorage.removeItem("currentUser");
     location.href = '/Module4_CS_LibraryManagement_FE/index.html';
 }
-function homePage(){
+
+function homePage() {
     changeApiSource(API_BOOKS);
     getCurrentPage();
 }
