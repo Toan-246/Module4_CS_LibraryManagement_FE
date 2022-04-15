@@ -26,10 +26,10 @@ function getAllCategory() {
 
 function showCreateForm(id) {
     let tittle = 'Tạo mới danh mục';
-    $('#create-tittle').html(tittle)
+    $('#tittle-category-create').html(tittle)
     let content = `<button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
                     <button type="button" class="btn btn-primary" onclick="createNewCategory()" aria-label="Close" class="close" data-dismiss="modal">Tạo mới</button>`;
-    $('#create-footer').html(content)
+    $('#footer-category-create').html(content)
     $('#name').val('')
 }
 
@@ -60,7 +60,7 @@ function createNewCategory() {
 function showDeleteForm(id) {
     let content = `<button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
                     <button type="button" class="btn btn-danger" onclick="deleteCategory(${id})" aria-label="Close" class="close" data-dismiss="modal">Xóa</button>`;
-    $('#delete-footer').html(content)
+    $('#footer-category-delete').html(content)
 }
 
 function deleteCategory(id) {
@@ -82,10 +82,10 @@ function deleteCategory(id) {
 
 function showEditForm(id) {
     let tittle = 'Chỉnh sửa thông tin danh mục';
-    $('#create-tittle').html(tittle)
+    $('#tittle-category-create').html(tittle)
     let content = `<button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
                     <button type="button" class="btn btn-primary" onclick="editCategory(${id})" aria-label="Close" class="close" data-dismiss="modal">Cập nhật</button>`;
-    $('#create-footer').html(content)
+    $('#footer-category-create').html(content)
     $.ajax({
         type: 'GET',
         url: `http://localhost:8080/api/categories/${id}`,
