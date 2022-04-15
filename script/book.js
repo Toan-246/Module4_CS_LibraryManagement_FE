@@ -1,29 +1,32 @@
-let currentUser = localStorage.getItem('currentUser');
+let currentUser = sessionStorage.getItem('currentUser');
 currentUser = JSON.parse(currentUser);// ep chuoi ve doi tuong
-function getAllProduct() {
+let pageNumber = 0;
+function getCurrentPage() {
+    let currentPageNumber = pageNumber + 1
+    $('#current-page').html(currentPageNumber);
     $.ajax({
         type: 'GET',
-        url: 'http://localhost:8080/products',
-        headers: {
-            'Authorization': 'Bearer ' + currentUser.token
-        },
-        success: function (products) {
+        url:` 'http://localhost:8080/api/books/page/${pageNumber}'`,
+        success: function (page) {
+            let books = page.content
             let content = '';
-            for (let i = 0; i < products.length; i++) {
+            for (let i = 0; i < books.length; i++) {
                 content += ` <tr>
             <td>${i + 1}</td>
-            <td>${products[i].name}</td>
-            <td>${products[i].price}</td>
-            <td>${products[i].description}</td>
-            <td><img src="http://localhost:8080/image/${products[i].image}"></td>
-            <td>${products[i].category == null ? '' : products[i].category.name}</td>
+            <td>${books[i].name}</td>
+            <td>${books[i].quantity}</td>
+            <td><img src="http://localhost:8080/image/${books[i].image}"></td>
+            <td>${books[i].description}</td>
+            <td>${books[i].publisher}</td>
+            <td>${books[i].status}</td>
+            <td>${books[i].category == null ? '' : books[i].category.name}</td>
             <td><button class="btn btn-primary"data-toggle="modal"
-                                        data-target="#input-product" onclick="showEditForm(${products[i].id})"><i class="fa fa-edit"></i></button></td>
+                                        data-target="#input-product" onclick="showEditForm(${books[i].id})"><i class="fa fa-edit"></i></button></td>
             <td><button class="btn btn-danger" data-toggle="modal"
-                                        data-target="#delete-product" onclick="showDeleteForm(${products[i].id})"><i class="fa fa-trash"></i></button></td>
+                                        data-target="#delete-product" onclick="showDeleteForm(${books[i].id})"><i class="fa fa-trash"></i></button></td>
         </tr>`
             }
-            $('#product-list-content').html(content);
+            $('#book-table').html(content);
         }
     })
 }
@@ -65,7 +68,7 @@ function createNewProduc() {
         processData:false,
         contentType: false,
         success: function () {
-            getAllProduct();
+            getAllBook();
             showSuccessMessage('Tao moi thanh cong');
         },
         error: function () {
@@ -88,7 +91,7 @@ function deleteProduct(id) {
             'Authorization': 'Bearer ' + currentUser.token
         },
         success: function () {
-            getAllProduct()
+            getAllBook()
             showSuccessMessage('Xoa thanh cong')
         },
         error: function () {
@@ -144,7 +147,7 @@ function editProduct(id) {
         processData:false,
         contentType: false,
         success: function () {
-            getAllProduct()
+            getAllBook()
             showSuccessMessage('Cập nhật thành công')
         },
         error: function () {
@@ -170,12 +173,28 @@ function drawCategory(selected_id) {
         }
     })
 }
+function drawLoginDetailsForAdmin() {
+    let content = "";
+    if (currentUser != null) { // already logged in
+        // let username = currentUser.username;
+        content += `<div class="info"><a href="#" id="username-holder">${currentUser.username}</a></div>
+                    <div class="image">
+                    <img src="http://localhost:8080/image/${currentUser.image}" class="img-circle elevation-2" alt="">
+                    </div>
+                    <p><span> | </span><a href="#" onclick="doLogout()">  Đăng xuất  </a></p>
+                    <p><span> | </span><a href="/Module4_CS_LibraryManagement_FE/pages/change-password.html">  Đổi mật khẩu  </a></p>\
+                          `
+    } else {   // guest
+        content += "<a href='/Module4_CS_LibraryManagement_FE/pages/login.html'></a>"
+    }
 
+    $("#login-details-librarian").html(content);
+}
+function doLogout() {
+    sessionStorage.removeItem("currentUser");
+    location.href = '/Module4_CS_LibraryManagement_FE/pages/login.html';
+}
 $(document).ready(function () {
-    if (currentUser!=null){
-        getAllProduct()
-    }
-    else {
-        location.href = '/ProductAjax/pages/auth/login.html';
-    }
+    getAllBook();
+    drawLoginDetailsForAdmin()
 })
