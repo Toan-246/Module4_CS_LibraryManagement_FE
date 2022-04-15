@@ -1,4 +1,5 @@
 let pageNumber = 0;
+let totalPage = 1;
 let API_BOOKS = "http://localhost:8080/api/books";
 let API_CATEGORIES = "http://localhost:8080/api/categories";
 
@@ -33,7 +34,7 @@ function getCurrentPage() {
                </li>`
             }
             $('#book-list-content').html(content);
-            let totalPage = page.totalPages;
+            totalPage = page.totalPages;
             $('#total-page').html(totalPage)
         }
     })
@@ -82,13 +83,18 @@ function getAllPublisher() {
 }
 
 function nextPage() {
-    pageNumber++;
-    getCurrentPage();
+    if (pageNumber < totalPage - 1){
+        pageNumber++;
+        getCurrentPage();
+    }
+
 }
 
 function previousPage() {
-    pageNumber--;
-    getCurrentPage();
+    if (pageNumber > 0){
+        pageNumber--;
+        getCurrentPage();
+    }
 }
 
 function drawLoginDetails() {
@@ -113,7 +119,8 @@ function doLogout() {
     sessionStorage.removeItem("currentUser");
     location.href = '/Module4_CS_LibraryManagement_FE/index.html';
 }
-function homePage(){
+
+function homePage() {
     changeApiSource(API_BOOKS);
     getCurrentPage();
 }
