@@ -144,6 +144,11 @@ function doLogout() {
     location.href = '/Module4_CS_LibraryManagement_FE/pages/login.html';
 }
 $(document).ready(function () {
-    getAllCategory();
-    drawLoginDetailsForAdmin();
+    if (currentUser!=null){
+        getAllCategory();
+        drawLoginDetailsForAdmin();
+    }
+    else {
+        location.href = '/Module4_CS_LibraryManagement_FE/pages/login.html';
+    }
 })
