@@ -120,7 +120,7 @@
                                 <h3 class="card-title col-11">Danh mục sách</h3>
                                 <button onclick="showCreateForm()" type="button" class="btn btn-primary col-1"
                                         data-toggle="modal"
-                                        data-target="#input-category">
+                                        data-target="#input-book">
                                     Tạo mới
                                 </button>
                             </div>
@@ -130,7 +130,13 @@
                                     <thead>
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">Tên danh mục</th>
+                                        <th scope="col">Tên sách</th>
+                                        <th scope="col">Số lượng</th>
+                                        <th scope="col">Ảnh</th>
+                                        <th scope="col">Mô tả</th>
+                                        <th scope="col">Nhà xuất bản</th>
+                                        <th scope="col">Tình trạng</th>
+                                        <th scope="col">Danh mục</th>
                                         <th scope="col" colspan="2"></th>
                                     </tr>
                                     </thead>
@@ -152,11 +158,11 @@
         <!-- /.content -->
     </div>
     <!-- /.modal -->
-    <div class="modal fade" id="input-category">
+    <div class="modal fade" id="input-book">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="tittle-category-create">Tạo mới Danh mục</h4>
+                    <h4 class="modal-title" id="tittle-book-create">Tạo mới sách</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -167,18 +173,18 @@
                         <input type="text" class="form-control" id="name" placeholder="Nhập tên danh mục">
                     </div>
                 </div>
-                <div class="modal-footer justify-content-between" id="footer-category-create">
+                <div class="modal-footer justify-content-between" id="footer-book-create">
                 </div>
             </div>
             <!-- /.modal-content -->
         </div>
         <!-- /.modal-dialog -->
     </div>
-    <div class="modal fade" id="delete-category">
+    <div class="modal fade" id="delete-book">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Xóa danh mục</h4>
+                    <h4 class="modal-title">Xóa sách</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -186,7 +192,7 @@
                 <div class="modal-body">
                     <p>Bạn có muốn xóa không ?</p>
                 </div>
-                <div class="modal-footer justify-content-between" id="footer-category-delete">
+                <div class="modal-footer justify-content-between" id="footer-book-delete">
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -241,7 +247,7 @@
 <script src="../../plugins/toastr/toastr.min.js"></script>
 
 <script src="../script/notification.js"></script>
-<script src="../script/category.js"></script>
+<script src="../script/book.js"></script>
 
 </body>
 </html>
