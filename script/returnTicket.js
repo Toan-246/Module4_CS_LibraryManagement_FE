@@ -1,5 +1,4 @@
-function saveReturnTicket(){
-    let borrowTicketId =$('#input-borrowTicketId').val();
+function saveReturnTicket(borrowTicketId){
     let returnTicket = {
         borrowTicket: {
             id: borrowTicketId
@@ -11,7 +10,8 @@ function saveReturnTicket(){
         data:JSON.stringify(returnTicket),
         headers:{
             'Accept':'application/json',
-            'Content-Type':'application/json'
+            'Content-Type':'application/json',
+            'Authorization': 'Bearer ' + currentUser.token
         },
         success:function(){
             alert('tao thanh cong')
