@@ -23,7 +23,7 @@ function doLogin(){
         success: function (currentUser){
             sessionStorage.setItem('currentUser', JSON.stringify(currentUser));
             location.href = '/Module4_CS_LibraryManagement_FE/index.html';
-        },
+        },users,
         error: function (errorMessage){
             alert(errorMessage.message);
         }
