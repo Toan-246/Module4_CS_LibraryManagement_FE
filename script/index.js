@@ -34,7 +34,7 @@ function getCurrentPage() {
                            <span class="description">${books[i].description}</span>
                         </span>
                      </a>
-                      <a href="#" class="buy-btn">Mượn sách <span class="price">${books[i].quantity}</span></a>
+                      <a class="buy-btn" onclick="addToCart(${books[i].id})">Mượn sách <span class="price">${books[i].quantity}</span></a>
                   </div>
                </li>`
             }
@@ -111,7 +111,8 @@ function drawLoginDetails() {
         let username = currentUser.username;
         content += `<p>Xin chào, <a href="#" id="username-holder">${username}</a> | </p>
         <p><a href="#" class="cart" ><img src="css/images/cart-icon.png" alt="" /></a>Cart</p>
-        <p><span> | </span><a href="#" onclick="doLogout()">  Đăng xuất  </a></p>`
+        <p><span> | </span><a href="#" onclick="doLogout()">  Đăng xuất  </a></p>
+        <p><span> | </span><a href="/Module4_CS_LibraryManagement_FE/pages/change-password.html">  Đổi mật khẩu  </a></p>`
 
     } else {   // guest
         content += "<p>Ấn vào <a href='/Module4_CS_LibraryManagement_FE/pages/login.html'>đây</a> để đăng nhập</p>"
