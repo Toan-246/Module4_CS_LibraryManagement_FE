@@ -121,6 +121,7 @@ function drawLoginDetails() {
         <p><span> | </span><a href="/Module4_CS_LibraryManagement_FE/pages/change-password.html">  Đổi mật khẩu  </a></p>`;
 
         navbar_ul_html += `<li><a onClick="getHomePage()">Trang chủ</a></li>
+                            <li><a href="/Module4_CS_LibraryManagement_FE/pages/personal-info.html">Thông tin tài khoản</a></li>
                             <li><a href="/Module4_CS_LibraryManagement_FE/pages/ticket.html">Quản lý mượn / trả sách</a></li>`
     }
 
