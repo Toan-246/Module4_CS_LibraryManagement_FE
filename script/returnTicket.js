@@ -1,34 +1,35 @@
-function saveReturnTicket(borrowTicketId){
+function saveReturnTicket(borrowTicketId) {
     let returnTicket = {
         borrowTicket: {
             id: borrowTicketId
         }
     };
     $.ajax({
-        type:'POST',
-        url:'http://localhost:8080/api/returnTickets',
-        data:JSON.stringify(returnTicket),
-        headers:{
-            'Accept':'application/json',
-            'Content-Type':'application/json',
+        type: 'POST',
+        url: 'http://localhost:8080/api/returnTickets',
+        data: JSON.stringify(returnTicket),
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + currentUser.token
         },
-        success:function(){
+        success: function () {
             alert('tao thanh cong')
         }
 
     })
 }
+
 function getAllReturnTicketNotReviewed() {
     $.ajax({
         url: `http://localhost:8080/api/returnTickets/notReviewed`,
         type: 'GET',
         headers: {
-            'Accept':'application/json',
-            'Content-Type':'application/json',
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + currentUser.token
         },
-        success: function (returnTickets){
+        success: function (returnTickets) {
             let content = '';
             for (let i = 0; i < returnTickets.length; i++) {
                 content += `<tr>
@@ -39,7 +40,7 @@ function getAllReturnTicketNotReviewed() {
         <td>${returnTickets[i].status}</td>
         <td>${returnTickets[i].isReviewed ? "Đã duyệt" : "Chưa duyệt"}</td>
         <td>${returnTickets[i].isAccepted ? "Đã thuê" : "-"}</td>
-        <td><button class="btn btn-primary" data-bs-target="#modal__review-return-ticket" data-bs-toggle="modal"  type="button" onclick="showReturnTicketReviewed(id)">Duyệt</td>
+        <td><button class="btn btn-primary" data-bs-target="#modal__review-return-ticket" data-bs-toggle="modal"  type="button" onclick="showReturnTicketReviewed(${returnTickets[i].id})">Duyệt</td>
     </tr>`
             }
             $('#table-body__return-ticket').html(content);
@@ -48,13 +49,32 @@ function getAllReturnTicketNotReviewed() {
 }
 
 function showReturnTicketReviewed(id) {
-    let content = `<button class="btn btn-secondary" data-dismiss="modal" type="button" onclick="">Deny</button>
-                    <button class="btn btn-danger" data-bs-dismiss="modal" onclick="acceptReturnTicket()" type="button">Accept</button>`;
-    $('#footer-show').html(content);
-}
-function acceptReturnTicket() {
     $.ajax({
-        url: `http://localhost:8080/api/returnTickets/${id}/accept`,
+        url: `http://localhost:8080/api/returnTickets/${id}`,
+        type: 'GET',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + currentUser.token
+        },
+        success: function (returnTickets) {
+            let content = `
+        <p>Tên người dùng : ${returnTickets.borrowTicket.customer.username}</p>
+        <p>Ngày mượn : ${returnTickets.borrowTicket.borrowDate}</p>
+        <p>Thời hạn : ${returnTickets.borrowTicket.duration}</p>
+        `
+            let select = `
+<button class="btn btn-secondary" data-dismiss="modal" type="button" onclick="">Deny</button>
+                    <button class="btn btn-danger" data-bs-dismiss="modal" onclick="acceptReturnTicket()" type="button">Accept</button>`;
+            $('#content_return_ticket').html(content);
+            $('#footer-show').html(select);
+        }
+    })
+}
+
+function acceptReturnTicket(returnTicketId) {
+    $.ajax({
+        url: `http://localhost:8080/api/returnTickets/${returnTicketId}/accept`,
         type: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -66,6 +86,6 @@ function acceptReturnTicket() {
     })
 }
 
-$(document).ready(function (){
+$(document).ready(function () {
     getAllReturnTicketNotReviewed();
 })
