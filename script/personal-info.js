@@ -21,8 +21,21 @@ function drawUserInfo() {
             $("#td__occupation-holder").html(occupation);
             $("#td__role-holder").html(role);
             $("#td__image-holder").html(`<img src="${IMAGE_FOLDER + user.image}" alt="-" height="200px">`);
+
+            $("#input__username").val(username);
+            $("#input__email").val(email);
+            $("#input__phone").val(phone);
+            $("#input__address").val(address);
+            $("#input__occupation").val(occupation);
+            $("#image__image-holder").prop("src",IMAGE_FOLDER + user.image);
+
         }
     });
+}
+
+function saveUserInfo(){
+        let userId = currentUser.id;
+
 }
 
 $(document).ready(function () {
