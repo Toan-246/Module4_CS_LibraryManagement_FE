@@ -116,10 +116,11 @@ function drawLoginDetails() {
     } else {    // already logged in
         let username = currentUser.username;
         let image = IMAGE_FOLDER + currentUser.image;
-        login_details_html += `<img src="${image}" alt="" height="30px"><a href="#" id="username-holder">${username}</a>
-<!--        <p><span> | </span><a href="#" onclick="doLogout()">  Đăng xuất  </a></p>-->
-        `;
-
+        login_details_html += `<img src="${image}" alt="" width="30px" height="30px">
+                            <div><a href="#" id="username-holder">${username}</a></div>
+                             <div><a href="#" onclick="doLogout()">  Đăng xuất  </a></div>
+                            
+                               `;
         navbar_ul_html += `<li><a onClick="getHomePage()">Trang chủ</a></li>
                             <li><a href="/Module4_CS_LibraryManagement_FE/pages/personal-info.html">Thông tin tài khoản</a></li>
                             <li><a href="/Module4_CS_LibraryManagement_FE/pages/ticket.html">Quản lý mượn / trả sách</a></li>

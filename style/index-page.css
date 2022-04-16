@@ -2,7 +2,7 @@
     display: flex;
 }
 
-#login-details > img {
+#login-details > * {
     align-self: center;
     margin-right: 1em;
 }
