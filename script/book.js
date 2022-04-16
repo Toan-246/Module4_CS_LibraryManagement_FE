@@ -396,7 +396,10 @@ function doLogout() {
     sessionStorage.removeItem("currentUser");
     location.href = '/Module4_CS_LibraryManagement_FE/pages/login.html';
 }
-
+function homePage(){
+    changeApiSource(API_BOOKS);
+    getCurrentPage();
+}
 $(document).ready(function () {
     if (currentUser!=null){
         changeApiSource(API_BOOKS);
