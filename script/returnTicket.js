@@ -48,9 +48,9 @@ function getAllReturnTicketNotReviewed() {
     })
 }
 
-function showReturnTicketReviewed(id) {
+function showReturnTicketReviewed(returnTicketId) {
     $.ajax({
-        url: `http://localhost:8080/api/returnTickets/${id}`,
+        url: `http://localhost:8080/api/returnTickets/${returnTicketId}`,
         type: 'GET',
         headers: {
             'Accept': 'application/json',
@@ -64,8 +64,8 @@ function showReturnTicketReviewed(id) {
         <p>Thời hạn : ${returnTickets.borrowTicket.duration}</p>
         `
             let select = `
-<button class="btn btn-secondary" data-dismiss="modal" type="button" onclick="">Deny</button>
-                    <button class="btn btn-danger" data-bs-dismiss="modal" onclick="acceptReturnTicket()" type="button">Accept</button>`;
+<button class="btn btn-danger" data-bs-dismiss="modal" type="button" onclick="denyReturnTicket(${returnTicketId})">Deny</button>
+                    <button class="btn btn-success" data-bs-dismiss="modal" onclick="acceptReturnTicket(${returnTicketId})" type="button">Accept</button>`;
             $('#content_return_ticket').html(content);
             $('#footer-show').html(select);
         }
@@ -78,10 +78,34 @@ function acceptReturnTicket(returnTicketId) {
         type: 'POST',
         headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + currentUser.token
         },
         success: function () {
             getAllReturnTicketNotReviewed();
+            displaySuccessToast("Đã duyệt");
+        },
+        error: function () {
+            displaySuccessToast("Lỗi duyệt");
+        }
+    })
+}
+
+function denyReturnTicket(returnTicketId) {
+    $.ajax({
+        url: `http://localhost:8080/api/returnTickets/${returnTicketId}/deny`,
+        type: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + currentUser.token
+        },
+        success: function () {
+            getAllReturnTicketNotReviewed();
+            displaySuccessToast("Đã duyệt");
+        },
+        error: function () {
+            displaySuccessToast("Lỗi duyệt");
         }
     })
 }
