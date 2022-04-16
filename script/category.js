@@ -124,7 +124,6 @@ function editCategory(id) {
 
 function drawLoginDetailsForAdmin() {
     let content = "";
-    console.log(currentUser)
     if (currentUser != null) { // already logged in
         // let username = currentUser.username;
         content += `<div class="info"><a href="#" id="username-holder">${currentUser.username}</a></div>
@@ -145,10 +144,11 @@ function doLogout() {
     location.href = '/Module4_CS_LibraryManagement_FE/pages/login.html';
 }
 $(document).ready(function () {
-    if (currentUser != null) {
+    if (currentUser!=null){
         getAllCategory();
         drawLoginDetailsForAdmin();
-    } else {
+    }
+    else {
         location.href = '/Module4_CS_LibraryManagement_FE/pages/login.html';
     }
 })
