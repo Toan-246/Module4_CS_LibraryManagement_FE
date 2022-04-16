@@ -17,7 +17,7 @@ function getCurrentPage() {
             let content = '';
             for (let i = 0; i < books.length; i++) {
                 content += ` <tr>
-            <td>${i + 1}</td>
+            <td>${i + 1 + page.pageable.pageNumber * page.pageable.pageSize}</td>
             <td>${books[i].name}</td>
             <td>${books[i].quantity}</td>
             <td><img src="http://localhost:8080/image/${books[i].image}" style="width: 150px"></td>
