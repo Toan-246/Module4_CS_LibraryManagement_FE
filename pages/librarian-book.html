@@ -76,9 +76,9 @@
             <div class="form-inline">
                 <div class="input-group" data-widget="sidebar-search">
                     <input class="form-control form-control-sidebar" type="search" placeholder="Search"
-                           aria-label="Search">
+                           aria-label="Search" id="q">
                     <div class="input-group-append">
-                        <button class="btn btn-sidebar">
+                        <button type="button" class="btn btn-sidebar" onclick="searchBookByName()">
                             <i class="fas fa-search fa-fw"></i>
                         </button>
                     </div>
@@ -89,7 +89,39 @@
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                     data-accordion="false">
-                    <li class="nav-header"><a href="#">Quản lý sách</a></li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <p>
+                                Quản lý sách
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>
+                                        Danh mục
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview" id="categories-list-content">
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>
+                                        Nhà xuất bản
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview" id="publisher-list-content">
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+
                     <li class="nav-header"><a href="#">Quản lý người dùng</a></li>
                     <li class="nav-header"><a href="/Module4_CS_LibraryManagement_FE/pages/librarian-return-borrow.html">Quản lý Phiếu mượn</a></li>
                     <li class="nav-header"><a href="/Module4_CS_LibraryManagement_FE/pages/librarian-return-ticket.html">Quản lý Phiếu trả</a></li>
