@@ -80,10 +80,10 @@ function createNewBook() {
         contentType: false,
         success: function () {
             getCurrentPage();
-            showSuccessMessage('Tao moi thanh cong');
+            showSuccessMessage('Tạo mới thành công');
         },
         error: function () {
-            showErrorMessage("Tao moi that bai");
+            showErrorMessage("Tạo mới thất bại");
         }
     })
 }
@@ -103,10 +103,10 @@ function deleteBook(id) {
         },
         success: function () {
             getCurrentPage()
-            showSuccessMessage('Xoa thanh cong')
+            showSuccessMessage('Xóa thành công')
         },
         error: function () {
-            showErrorMessage('Xoa that bai')
+            showErrorMessage('Xóa thất bại')
         }
     })
 }
