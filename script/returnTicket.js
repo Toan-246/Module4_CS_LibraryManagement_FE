@@ -42,13 +42,11 @@ function getAllReturnTicketNotReviewed() {
         <td><button class="btn btn-primary" data-bs-target="#modal__review-return-ticket" data-bs-toggle="modal"  type="button" onclick="showReturnTicketReviewed(id)">Duyệt</td>
     </tr>`
             }
-            $('#return-ticket-not-reviewed').html(content);
+            $('#table-body__return-ticket').html(content);
         }
     })
 }
-$(document).ready(function (){
-    getAllReturnTicketNotReviewed();
-})
+
 function showReturnTicketReviewed(id) {
     let content = `<button class="btn btn-secondary" data-dismiss="modal" type="button" onclick="">Deny</button>
                     <button class="btn btn-danger" data-bs-dismiss="modal" onclick="acceptReturnTicket()" type="button">Accept</button>`;
@@ -67,3 +65,7 @@ function acceptReturnTicket() {
         }
     })
 }
+
+$(document).ready(function (){
+    getAllReturnTicketNotReviewed();
+})
