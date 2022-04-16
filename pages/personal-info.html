@@ -9,15 +9,20 @@
             integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
             crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
+    <link href="/plugin-toastr/toastr.css" rel="stylesheet">
+    <script src="/plugin-toastr/toastr.js"></script>
 </head>
 <body>
+
 <div class="container mt-4">
     <div class="d-flex gap-3 mb-3">
-        <button class="btn btn-primary" id="button__editInfo" data-bs-toggle="modal" data-bs-target="#modal__edit-info">
+        <a id="a__back" href="">
+            <button class="btn btn-primary" id="button__back">Trở lại</button>
+        </a>
+        <button class="btn btn-primary" id="button__editInfo" data-bs-toggle="modal" data-bs-target="#modal__edit-info" onclick="showEditUserInfoModal()">
             Sửa thông tin
         </button>
-        <a href="">
+        <a href="/Module4_CS_LibraryManagement_FE/pages/change-password.html">
             <button class="btn btn-primary" id="button__changePassword">Đổi mật khẩu</button>
         </a>
     </div>
@@ -53,37 +58,53 @@
 
     </table>
 </div>
-<div class="modal " id="modal__edit-info" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="mb-3">
-        <label for="input__username" class="form-label">Tài khoản</label>
-        <input type="text" id="input__username" class="form-control" name="username">
-    </div>
-    <div class="mb-3">
-        <label for="input__email" class="form-label">Email</label>
-        <input type="email" id="input__email" class="form-control" name="email">
-    </div>
-    <div class="mb-3">
-        <label for="input__phone" class="form-label">Số điện thoại</label>
-        <input type="text" id="input__phone" class="form-control" name="phone">
-    </div>
-    <div class="mb-3">
-        <label for="input__address" class="form-label">Địa chỉ</label>
-        <input type="text" id="input__address" class="form-control" name="address">
-    </div>
-    <div class="mb-3">
-        <label for="input__occupation" class="form-label">Nghề nghiệp</label>
-        <input type="text" id="input__occupation" class="form-control" name="occupation">
-    </div>
-    <div class="mb-3">
-        <div class="d-flex">
-            <label for="input__image" class="form-label">Ảnh đại diện</label>
-            <image id="image__image-holder" style="height:150px"></image>
+<!-- Modal -->
+<div class="modal fade" id="modal__edit-info" tabindex="-1" aria-labelledby="modal__edit-info" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Sửa thông tin</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="input__username" class="form-label">Tài khoản</label>
+                    <input type="text" id="input__username" class="form-control" name="username" disabled>
+                </div>
+                <div class="mb-3">
+                    <label for="input__email" class="form-label">Email</label>
+                    <input type="email" id="input__email" class="form-control" name="email">
+                </div>
+                <div class="mb-3">
+                    <label for="input__phone" class="form-label">Số điện thoại</label>
+                    <input type="text" id="input__phone" class="form-control" name="phone">
+                </div>
+                <div class="mb-3">
+                    <label for="input__address" class="form-label">Địa chỉ</label>
+                    <input type="text" id="input__address" class="form-control" name="address">
+                </div>
+                <div class="mb-3">
+                    <label for="input__occupation" class="form-label">Nghề nghiệp</label>
+                    <input type="text" id="input__occupation" class="form-control" name="occupation">
+                </div>
+                <div class="mb-3">
+                    <div class="d-flex gap-3 mb-3">
+                        <label for="input__image" class="form-label">Ảnh đại diện</label>
+                        <image id="image__image-holder" style="height:150px"></image>
+                    </div>
+                    <input type="file" id="input__image" class="form-control" name="image" accept="image/*">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Thoát</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="saveUserInfo()">Lưu thông tin</button>
+            </div>
         </div>
-        <input type="file" id="input__image" class="form-control" name="image">
     </div>
-    <button type="button" class="btn btn-primary" id="button__ok">Lưu thông tin</button>
 </div>
+
 <script src="../script/init.js"></script>
+<script src="../script/display-message.js"></script>
 <script src="../script/personal-info.js"></script>
 </body>
 </html>

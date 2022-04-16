@@ -110,19 +110,21 @@ function drawLoginDetails() {
     let navbar_ul_html = "";
 
     if (currentUser == null) {    // guest
-        login_details_html += "<p>Ấn vào <a href='/Module4_CS_LibraryManagement_FE/pages/login.html'>đây</a> để đăng nhập</p>";
+        login_details_html += "<a href='/Module4_CS_LibraryManagement_FE/pages/login.html'><button><img src=\"css/images/login-icon.png\" alt=\"\" height='20px' />Đăng nhập</button></a>";
         navbar_ul_html += `<li><a onClick="getHomePage()">Trang chủ</a></li>`;
 
     } else {    // already logged in
         let username = currentUser.username;
-        login_details_html += `<p>Xin chào, <a href="#" id="username-holder">${username}</a> | </p>
-        <p><a href="#" class="cart" ><img src="css/images/cart-icon.png" alt="" /></a>Cart</p>
-        <p><span> | </span><a href="#" onclick="doLogout()">  Đăng xuất  </a></p>
-        <p><span> | </span><a href="/Module4_CS_LibraryManagement_FE/pages/change-password.html">  Đổi mật khẩu  </a></p>`;
+        let image = IMAGE_FOLDER + currentUser.image;
+        login_details_html += `<img src="${image}" alt="" height="30px"><a href="#" id="username-holder">${username}</a>
+<!--        <p><span> | </span><a href="#" onclick="doLogout()">  Đăng xuất  </a></p>-->
+        `;
 
         navbar_ul_html += `<li><a onClick="getHomePage()">Trang chủ</a></li>
                             <li><a href="/Module4_CS_LibraryManagement_FE/pages/personal-info.html">Thông tin tài khoản</a></li>
-                            <li><a href="/Module4_CS_LibraryManagement_FE/pages/ticket.html">Quản lý mượn / trả sách</a></li>`
+                            <li><a href="/Module4_CS_LibraryManagement_FE/pages/ticket.html">Quản lý mượn / trả sách</a></li>
+                            <li><a href="/Module4_CS_LibraryManagement_FE/pages/ticket.html"><img src="css/images/cart-icon.png" alt="" /> Giỏ sách</a></li>
+                            `;
     }
 
     $("#login-details").html(login_details_html);
