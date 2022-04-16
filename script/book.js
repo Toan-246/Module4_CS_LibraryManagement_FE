@@ -2,19 +2,22 @@ let currentUser = sessionStorage.getItem('currentUser');
 currentUser = JSON.parse(currentUser);// ep chuoi ve doi tuong
 let pageNumber = 0;
 let totalPage = 1;
+let hasNext;
+let hasPrevious;
 
 function getCurrentPage() {
-    let currentPageNumber = pageNumber + 1
-    $('#current-page').html(currentPageNumber);
+
     $.ajax({
         type: 'GET',
         url:` http://localhost:8080/api/books/page/${pageNumber}`,
         success: function (page) {
+
+            console.log(hasPrevious, hasNext);
             let books = page.content
             let content = '';
             for (let i = 0; i < books.length; i++) {
                 content += ` <tr>
-            <td>${i + 1}</td>
+            <td>${i + 1 + page.pageable.pageNumber * page.pageable.pageSize}</td>
             <td>${books[i].name}</td>
             <td>${books[i].quantity}</td>
             <td><img src="http://localhost:8080/image/${books[i].image}" style="width: 150px"></td>
@@ -31,6 +34,35 @@ function getCurrentPage() {
             $('#book-table').html(content);
             totalPage = page.totalPages;
             $('#total-page').html(totalPage)
+
+            hasPrevious = !page.first
+            hasNext = !page.last
+            let currentPageNumber = pageNumber + 1
+            let nextPageNumber = currentPageNumber + 1
+            let previousPageNumber = currentPageNumber - 1
+
+
+
+            let content1 = '';
+            content1 += `<ul class="pagination justify-content-end">
+             <li class="page-item">
+               <a class="page-link"onclick="previousPage()" aria-label="Previous">
+                 <span aria-hidden="true">&laquo;</span>
+               </a>
+             </li>
+             ${hasPrevious ? '<li class="page-item" ><a class="page-link" onclick="previousPage()"><span id="previous-page"></span></a></li>' : ''}  
+             <li class="page-item" ><a class="page-link" onclick="getCurrentPage()"><b><span id="current-page"></span></b></a></li>     
+             ${hasNext ? '<li class="page-item" ><a class="page-link" onclick="nextPage()"><span id="next-page"></span></a></li>' : '' }
+             <li class="page-item">
+               <a class="page-link" onclick="nextPage()" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+             </li>
+          </ul>`
+            $('#paging').html(content1);
+            $('#current-page').html(currentPageNumber);
+            $('#previous-page').html(previousPageNumber);
+            $('#next-page').html(nextPageNumber);
         }
     })
 }
@@ -45,6 +77,7 @@ function showCreateForm(id) {
     $('#quantity').val('')
     $('#description').val('')
     $('#publisher').val('')
+    $('#image-holder').html('')
     $('#image').val('')
     $('#status').val('')
     $('#category').val('')
@@ -131,6 +164,7 @@ function showEditForm(id) {
             $('#description').val(book.description);
             $('#publisher').val(book.publisher);
             $('#image').val('')
+            $('#image-holder').html(`<img src="http://localhost:8080/image/${book.image}" alt="" id="image-holder" height="150px">`)
             $('#status').val(book.status);
             $('#category').val(book.category);
         }
@@ -238,32 +272,6 @@ function drawLoginDetailsForAdmin() {
 
     $("#login-details-librarian").html(content);
 }
-function page(){
-    let content = '';
-    content += `<ul class="pagination justify-content-end">
-            <li class="page-item">
-                <a class="page-link" th:if="${products.hasPrevious()}"
-                   th:href="@{'/products'(page=${products.number - 1}, q=${q})}">
-                    <span aria-hidden="true">&laquo;</span>
-                </a>
-            </li>
-            <li class="page-item"><a class="page-link" th:if="${products.hasPrevious()}"
-                                     th:href="@{'/products'(page=${products.number - 1}, q=${q})}"
-                                     th:text="${products.number}"></a></li>
-            <li class="page-item"><a class="page-link" th:href="@{'/products'(page=${products.number}, q=${q})}"
-                                     th:text="${products.number + 1}"></a></li>
-            <li class="page-item"><a class="page-link" th:if="${products.hasNext()}"
-                                     th:href="@{'/products'(page=${products.number +1 }, q=${q})}"
-                                     th:text="${products.number} + 2"></a></li>
-            <li class="page-item">
-                <a class="page-link" th:if="${products.hasNext()}"
-                   th:href="@{'/products'(page=${products.number + 1}, q=${q})}">
-                    <span aria-hidden="true">&raquo;</span>
-                </a>
-            </li>
-        </ul>`
-    $('#page').html(content);
-}
 
 
 function doLogout() {
@@ -274,7 +282,6 @@ $(document).ready(function () {
     if (currentUser!=null){
         getCurrentPage();
         drawLoginDetailsForAdmin();
-        page();
     }
     else {
         location.href = '/Module4_CS_LibraryManagement_FE/pages/login.html';
