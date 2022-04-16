@@ -28,7 +28,7 @@ function doLogin() {
                     break;
                 }
                 case "ROLE_LIBRARIAN": {
-                    location.href = '/Module4_CS_LibraryManagement_FE/pages/librarian-ticket.html';
+                    location.href = '../../pages/librarian-book.html';
                     break;
                 }
                 case "ROLE_CUSTOMER":
