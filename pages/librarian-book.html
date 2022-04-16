@@ -146,13 +146,9 @@
                                     </tbody>
                                 </table>
                                 <div>
-                                    <div id="change-page">
-                                        <button type="button" onclick="previousPage()">Previous</button>
-                                        <span id="current-page"></span>/<span id="total-page"></span>
-                                        <button type="button" x onclick="nextPage()">Next</button>
-                                    </div>
+                                    <br>
                                 </div>
-                                <nav aria-label="Page navigation example" id="page">
+                                <nav aria-label="Page navigation example" id="paging">
                                 </nav>
                             </div>
                             <!-- /.card-body -->
@@ -195,7 +191,10 @@
                         <input type="text" class="form-control" id="publisher" placeholder="Nhập nhà xuất bản">
                     </div>
                     <div class="form-group">
-                        <label for="image">Ảnh</label>
+                        <div class="d-flex gap-3 mb-3">
+                            <label for="image">Ảnh</label>
+                            <span id="image-holder"></span>
+                        </div>
                         <input type="file" class="form-control" id="image">
                     </div>
                     <div class="form-group">
