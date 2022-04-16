@@ -16,7 +16,7 @@ function getTicketOfCurrentUser() {
                     <td>${borrowTickets[i].isAccepted ? "Đã được chấp nhận" : "Không được chấp nhận"}</td>
                     <td>${borrowTickets[i].isReviewed ? "Đã được xem qua" : "Chưa được xem qua"}</td>
                     <td>${borrowTickets[i].isReturned ? "Đã trả lại" : "Chưa được trả lại"}</td>
-                    <td>${borrowTickets[i].isReturned ? '' : '<button type="button" onclick="saveReturnTicket(' + borrowTickets[i].id + ')">Trả lại sách ngay bây giờ</button>'}</td>
+                    <td>${!borrowTickets[i].isAccepted ? "" : (borrowTickets[i].hasReturnTicket ? 'Đã tạo thẻ trả' : '<button type="button" onclick="saveReturnTicket(' + borrowTickets[i].id + ')">Trả lại sách ngay bây giờ</button>')}</td>
                     </tr>`
             }
             $('#borrow-ticket-list').html(content);
