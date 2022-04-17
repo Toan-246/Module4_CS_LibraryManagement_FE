@@ -1,11 +1,12 @@
 function getTicketFromAllCustomer() {
     $.ajax({
         type: "GET",
-        url: `http://localhost:8080/api/borrowtickets`,
+        url: `http://localhost:8080/api/borrowtickets?page=0`,
         headers: {
             'Authorization': 'Bearer ' + currentUser.token
         },
-        success: function (borrowTickets) {
+        success: function (page) {
+            let borrowTickets = page.content;
             let content = '';
             for (let i = 0; i < borrowTickets.length; i++) {
                 content += `
