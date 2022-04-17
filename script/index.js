@@ -25,9 +25,7 @@ function getCurrentPage() {
                       <a href="#" class="info">
                          <span class="holder">
                            <img src="http://localhost:8080/image/${books[i].image}" alt="" />
-                           <span class="book-name"${books[i].name}</span>
-                           <span class="author">${books[i].publisher}</span>
-                           <span class="description">${books[i].description}</span>
+                           <span>${books[i].name}</span>
                         </span>
                      </a>
                       <a class="buy-btn" onclick="addToCart(${books[i].id})">Mượn sách <span class="price">${books[i].quantity}</span></a>
