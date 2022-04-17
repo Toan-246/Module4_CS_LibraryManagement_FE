@@ -19,7 +19,7 @@ function drawBorrowTickets() {
                <td>${borrowTickets[i].duration}</td>
                <td>${borrowTickets[i].reviewed ? "Đã duyệt" : "Chưa duyệt"}</td>
                <td>${borrowTickets[i].reviewed ? (borrowTickets[i].accepted  ? "Chấp nhận" : "Từ chối") : "-"}</td>
-               <td>${borrowTickets[i].reviewed ? (borrowTickets[i].returned  ? "Đã trả" : "Đang mượn") : "-"}</td>
+               <td>${borrowTickets[i].accepted ? (borrowTickets[i].returned  ? "Đã trả" : "Đang mượn") : "-"}</td>
                
                <td><button class="btn btn-primary" data-bs-toggle="modal"
                 data-bs-target="#modal__borrow-ticket-detail" onclick="showModalDetail(${borrowTickets[i].id})">Xem chi tiết</button></td>

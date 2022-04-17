@@ -128,7 +128,7 @@ function drawLoginDetailsForAdmin() {
         // let username = currentUser.username;
         content += `<div class="info"><a href="#" id="username-holder">${currentUser.username}</a></div>
                     <div class="image">
-                    <img src="http://localhost:8080/image/${currentUser.image}" class="img-circle elevation-2" alt="">
+                    <img src="http://localhost:8080/image/${currentUser.image}" class="img-circle elevation-2" alt="" height="30px">
                     </div>
                     <p><span> | </span><a href="#" onclick="doLogout()">  Đăng xuất  </a></p>
                     <p><span> | </span><a href="/Module4_CS_LibraryManagement_FE/pages/change-password.html">  Đổi mật khẩu  </a></p>\

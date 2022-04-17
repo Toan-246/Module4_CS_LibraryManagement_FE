@@ -35,6 +35,7 @@
                 data-bs-target="#modal__borrow-book">
             Tạo phiếu mượn toàn bộ giỏ
         </button>
+        <a class="btn btn-outline-primary" href="/Module4_CS_LibraryManagement_FE/pages/customer-borrow-ticket.html">Quản lý phiếu mượn / phiếu trả</a>
     </div>
     <div class="card-body">
         <table id="example2" class="table table-bordered table-hover">
@@ -71,6 +72,10 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+                <div class="form-group">
+                    <label for="modal-input__duration">Số ngày thuê</label>
+                    <input type="number" class="form-control" id="modal-input__duration" value="10">
+                </div>
                 <p>Tạo phiếu mượn sách?</p>
             </div>
             <div class="modal-footer justify-content-between" id="modal-footer__borrow">

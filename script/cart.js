@@ -82,7 +82,7 @@ function removeBookFromCart(bookId) {
 
 function createBorrowTicket() {
     let userId = currentUser.id;
-    let duration = 30;
+    let duration = $("#modal-input__duration").val();
 
     $.ajax({
         type: "POST",
