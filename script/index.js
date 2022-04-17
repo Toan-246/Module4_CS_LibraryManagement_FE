@@ -5,7 +5,6 @@ let API_CATEGORIES = "http://localhost:8080/api/categories";
 
 let apiSource;
 
-
 function changeApiSource(source) {
     apiSource = source;
 }
