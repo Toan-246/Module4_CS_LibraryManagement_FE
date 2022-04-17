@@ -39,72 +39,42 @@
 
 
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
-            <div class="container-fluid">
-                <div class=" d-flex mb-2 gap-5 align-content-center" >
-                    <div >
-                        <h1>Giỏ sách cá nhân</h1>
-                    </div>
-                    <div >
-                        <a href="/Module4_CS_LibraryManagement_FE/index.html"><h4>Trang chủ</h4></a>
-                    </div>
-                </div>
-            </div><!-- /.container-fluid -->
-        </section>
-
+<body>
         <!-- Main content -->
-        <section class="content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title col-10">Danh sách</h3>
-                                <button onclick="showModalBorrow()" type="button" class="btn btn-outline-primary col-2"
-                                        data-toggle="modal"
-                                        data-target="#modal__borrow-book" >
-                                    Tạo mới
-                                </button>
-                            </div>
-                            <!-- /.card-header -->
-                            <div class="card-body">
-                                <table id="example2" class="table table-bordered table-hover">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Tên sách</th>
-                                        <th scope="col">Ảnh</th>
-                                        <th scope="col">Danh mục</th>
-                                        <th scope="col">Nhà xuất bản</th>
-                                        <th scope="col">Mô tả</th>
-                                        <th scope="col">Tình trạng</th>
-                                        <th></th>
-                                    </tr>
-                                    </thead>
-                                    <tbody id="table-body__books">
-                                    </tbody>
-                                </table>
-                                <div>
-                                    <br>
-                                </div>
-                                <nav aria-label="Page navigation example" id="paging">
-                                </nav>
-                            </div>
-                            <!-- /.card-body -->
-                        </div>
-
-                    </div>
-                    <!-- /.col -->
+            <div class="container mt-4">
+                <div class="d-flex gap-5">
+                    <a class="btn btn-outline-primary" href="/Module4_CS_LibraryManagement_FE/index.html">Trở về</a>
+                    <button onclick="showModalBorrow()" type="button" class="btn btn-primary"
+                            data-toggle="modal"
+                            data-target="#modal__borrow-book" >
+                        Tạo phiếu mượn toàn bộ giỏ
+                    </button>
                 </div>
-                <!-- /.row -->
-            </div>
-            <!-- /.container-fluid -->
-        </section>
-        <!-- /.content -->
+                <div class="card-body">
+                    <table id="example2" class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Tên sách</th>
+                            <th scope="col">Ảnh</th>
+                            <th scope="col">Danh mục</th>
+                            <th scope="col">Nhà xuất bản</th>
+                            <th scope="col">Mô tả</th>
+                            <th scope="col">Tình trạng</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody id="table-body__books">
+                        </tbody>
+                    </table>
+                    <div>
+                        <br>
+                    </div>
+                    <nav aria-label="Page navigation example" id="paging">
+                    </nav>
+                </div>
+                <!-- /.card-body -->
+
     </div>
     <!-- /.modal -->
     <div class="modal fade" id="modal__borrow-book">
@@ -162,13 +132,13 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Bỏ sách ra khỏi giỏ</h4>
+                    <h4 class="modal-title">Xóa khỏi giỏ</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>Bạn có muốn xóa không ?</p>
+                    <div id="div__remove-book-info"></div>
                 </div>
                 <div class="modal-footer justify-content-between" id="modal-footer__remove-book">
                 </div>
@@ -177,10 +147,8 @@
         </div>
         <!-- /.modal-dialog -->
     </div>
-
     <!-- /.modal -->
-    <!-- /.content-wrapper -->
-</div>
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
@@ -224,8 +192,8 @@
 <!-- Toastr -->
 <script src="../../plugins/toastr/toastr.min.js"></script>
 
-<script src="../script/notification.js"></script>
-<!--<script src="../script/book.js"></script>-->
+<script src="../script/display-message.js"></script>
+<script src="../script/cart.js"></script>
 
 </body>
 </html>

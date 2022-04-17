@@ -123,7 +123,7 @@ function drawLoginDetails() {
         navbar_ul_html += `<li><a onClick="getHomePage()">Trang chủ</a></li>
                             <li><a href="/Module4_CS_LibraryManagement_FE/pages/personal-info.html">Thông tin tài khoản</a></li>
                             <li><a href="/Module4_CS_LibraryManagement_FE/pages/ticket.html">Quản lý mượn / trả sách</a></li>
-                            <li><a href="/Module4_CS_LibraryManagement_FE/pages/ticket.html"><img src="css/images/cart-icon.png" alt="" /> Giỏ sách</a></li>
+                            <li><a href="/Module4_CS_LibraryManagement_FE/pages/cart.html"><img src="css/images/cart-icon.png" alt="" /> Giỏ sách</a></li>
                             `;
     }
 
