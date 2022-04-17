@@ -36,7 +36,8 @@
     <link rel="stylesheet" href="../../plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
     <!-- Toastr -->
     <link rel="stylesheet" href="../../plugins/toastr/toastr.min.css">
-
+    <link href="/plugin-toastr/toastr.css" rel="stylesheet">
+    <script src="/plugin-toastr/toastr.js"></script>
 
 
 </head>
@@ -90,11 +91,17 @@
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                     data-accordion="false">
-                    <li class="nav-header"><a href="/Module4_CS_LibraryManagement_FE/pages/librarian-book.html">Quản lý sách</a></li>
+                    <li class="nav-header"><a href="/Module4_CS_LibraryManagement_FE/pages/librarian-book.html">Quản lý
+                        sách</a></li>
                     <li class="nav-header"><a href="#">Quản lý người dùng</a></li>
-                    <li class="nav-header"><a href="/Module4_CS_LibraryManagement_FE/pages/librarian-borrow-ticket.html">Quản lý Phiếu mượn</a></li>
-                    <li class="nav-header"><a href="/Module4_CS_LibraryManagement_FE/pages/librarian-return-ticket.html">Quản lý Phiếu trả</a></li>
-
+                    <li class="nav-header"><a
+                            href="/Module4_CS_LibraryManagement_FE/pages/librarian-borrow-ticket.html">Quản lý Phiếu
+                        mượn</a></li>
+                    <li class="nav-header"><a
+                            href="/Module4_CS_LibraryManagement_FE/pages/librarian-return-ticket.html">Quản lý Phiếu
+                        trả</a></li>
+                    <li class="nav-header"><a href="/Module4_CS_LibraryManagement_FE/pages/personal-info.html">Thông tin
+                        tài khoản</a></li>
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->
@@ -134,7 +141,7 @@
                                         <th scope="col">Thời gian mượn</th>
                                         <th scope="col">Thời hạn</th>
                                         <th scope="col">Trạng thái</th>
-                                        <th scope="col">Reviewed/th>
+                                        <th scope="col">Reviewed</th>
                                         <th scope="col">Accept</th>
                                         <th scope="col"></th>
                                     </tr>
@@ -164,8 +171,24 @@
         </section>
         <!-- /.content -->
     </div>
-
+    <div class="modal fade" id="modal__review-return-ticket">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Duyệt</h4>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="content_return_ticket">
+                </div>
+                <div class="modal-footer justify-content-between" id="footer-show">
+                </div>
+            </div>
+            <!-- /.modal-content -->
         </div>
+        <!-- /.modal-dialog -->
+    </div>
 
     <!-- /.content-wrapper -->
 </div>
@@ -214,6 +237,7 @@
 <script src="../script/notification.js"></script>
 
 <script src="../script/init.js"></script>
+<script src="../script/display-message.js"></script>
 <script src="../script/returnTicket.js"></script>
 </body>
 </html>
