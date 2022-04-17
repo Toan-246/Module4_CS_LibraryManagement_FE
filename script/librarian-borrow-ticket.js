@@ -64,8 +64,6 @@ function borrowTicketDetails(id) {
                     $('#list_book').html(contentDetails1);
                 }
             })
-            
-
         }
 })
     acceptOrNot(id);
