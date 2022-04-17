@@ -27,7 +27,7 @@ function getCurrentPage() {
             <td>${i + 1 + page.pageable.pageNumber * page.pageable.pageSize}</td>
             <td>${books[i].name}</td>
             <td>${books[i].quantity}</td>
-            <td><img src="http://localhost:8080/image/${books[i].image}" style="width: 150px"></td>
+            <td><img src="http://localhost:8080/image/${books[i].image}" style="height: 150px"></td>
             <td>${books[i].description}</td>
             <td>${books[i].publisher}</td>
             <td>${books[i].status}</td>
@@ -246,6 +246,7 @@ function editBook(id) {
     let description = $('#description').val();
     let publisher = $('#publisher').val();
     let image = $('#image').prop('files')[0];
+    if (image == undefined) image = new File([""], "empty-file");
     let status = $('#status').val();
     let category = $('#category').val();
     let book = new FormData();
