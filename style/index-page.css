@@ -1,0 +1,8 @@
+#login-details{
+    display: flex;
+}
+
+#login-details > * {
+    align-self: center;
+    margin-right: 1em;
+}
