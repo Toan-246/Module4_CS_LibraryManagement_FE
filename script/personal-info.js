@@ -91,6 +91,7 @@ function saveUserInfo() {
     userInfoForm.append("address", address);
     userInfoForm.append("occupation", occupation);
     userInfoForm.append("image", image);
+    userInfoForm.append("active", true);
 
     $.ajax({
         type: 'POST',

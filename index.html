@@ -4,9 +4,9 @@
 <head>
     title>Thư viện sách</title>
 
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-    <link rel="shortcut icon" href="css/images/favicon.ico" />
-    <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+    <link rel="shortcut icon" href="css/images/favicon.ico"/>
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="all"/>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
@@ -129,20 +129,17 @@
                 <ul id="publisher-list-content">
                 </ul>
             </li>
-            <li>
-                <h4>Tác giả</h4>
-                <ul>
-                    <li><a href="#">Lorem ipsum dolor</a></li>
-                    <li><a href="#">Morbi eget</a></li>
-                    <li><a href="#">Nulla egestas</a></li>
-                    <li><a href="#">Curabitur venenatis</a></li>
-                </ul>
-            </li>
         </ul>
     </div>
     <!-- End Sidebar -->
     <!-- Content -->
+
     <div id="content">
+        <form class="right">
+            <input placeholder="Tìm sách" id="q">
+            <span class="form-buttons"><input type="button" class="submit-btn" onclick="searchBookByName()"
+                                              value="Tìm kiếm"></span>
+        </form>
         <!-- Products -->
         <div class="products">
             <h3>Danh sách</h3>
@@ -150,104 +147,17 @@
             </ul>
             <!-- End Products -->
         </div>
-        <div>
-            <div id="change-page">
-                <button type="button" onclick="previousPage()">Previous</button>
-                <span id="current-page"></span>/<span id="total-page"></span>
-                <button type="button" x onclick="nextPage()">Next</button>
-            </div>
-        </div>
-        <div class="cl">&nbsp;</div>
-        <!-- Best-sellers -->
-        <div id="best-sellers">
-            <h3>Best Sellers</h3>
-            <ul>
-                <li>
-                    <div class="product">
-                        <a href="#">
-                            <img src="css/images/image-best01.jpg" alt=""/>
-                            <span class="book-name">Book Name </span>
-                            <span class="author">by John Smith</span>
-                            <span class="price"><span class="low">$</span>35<span class="high">00</span></span>
-                        </a>
-                    </div>
-                </li>
-                <li>
-                    <div class="product">
-                        <a href="#">
-                            <img src="css/images/image-best02.jpg" alt=""/>
-                            <span class="book-name">Book Name </span>
-                            <span class="author">by John Smith</span>
-                            <span class="price"><span class="low">$</span>45<span class="high">00</span></span>
-                        </a>
-                    </div>
-                </li>
-                <li>
-                    <div class="product">
-                        <a href="#">
-                            <img src="css/images/image-best03.jpg" alt=""/>
-                            <span class="book-name">Book Name </span>
-                            <span class="author">by John Smith</span>
-                            <span class="price"><span class="low">$</span>15<span class="high">00</span></span>
-                        </a>
-                    </div>
-                </li>
-                <li>
-                    <div class="product">
-                        <a href="#">
-                            <img src="css/images/image-best04.jpg" alt=""/>
-                            <span class="book-name">Book Name </span>
-                            <span class="author">by John Smith</span>
-                            <span class="price"><span class="low">$</span>27<span class="high">99</span></span>
-                        </a>
-                    </div>
-                </li>
-                <li>
-                    <div class="product">
-                        <a href="#">
-                            <img src="css/images/image-best01.jpg" alt=""/>
-                            <span class="book-name">Book Name </span>
-                            <span class="author">by John Smith</span>
-                            <span class="price"><span class="low">$</span>35<span class="high">00</span></span>
-                        </a>
-                    </div>
-                </li>
-                <li>
-                    <div class="product">
-                        <a href="#">
-                            <img src="css/images/image-best02.jpg" alt=""/>
-                            <span class="book-name">Book Name </span>
-                            <span class="author">by John Smith</span>
-                            <span class="price"><span class="low">$</span>45<span class="high">00</span></span>
-                        </a>
-                    </div>
-                </li>
-                <li>
-                    <div class="product">
-                        <a href="#">
-                            <img src="css/images/image-best03.jpg" alt=""/>
-                            <span class="book-name">Book Name </span>
-                            <span class="author">by John Smith</span>
-                            <span class="price"><span class="low">$</span>15<span class="high">00</span></span>
-                        </a>
-                    </div>
-                </li>
-                <li>
-                    <div class="product">
-                        <a href="#">
-                            <img src="css/images/image-best04.jpg" alt=""/>
-                            <span class="book-name">Book Name </span>
-                            <span class="author">by John Smith</span>
-                            <span class="price"><span class="low">$</span>27<span class="high">99</span></span>
-                        </a>
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <!-- End Best-sellers -->
+
     </div>
+
     <!-- End Content -->
     <div class="cl">&nbsp;</div>
+    <div class="right low">
+        <button type="button" onclick="previousPage()">Previous</button>
+        <span id="current-page"></span>/<span id="total-page"></span>
+        <button type="button" x onclick="nextPage()">Next</button>
+    </div>
+    <div id="paging"></div>
 </div>
 <!-- End Main -->
 <!-- Footer -->

@@ -5,6 +5,7 @@ let API_CATEGORIES = "http://localhost:8080/api/categories";
 
 let apiSource;
 
+
 function changeApiSource(source) {
     apiSource = source;
 }
@@ -24,9 +25,7 @@ function getCurrentPage() {
                       <a href="#" class="info">
                          <span class="holder">
                            <img src="http://localhost:8080/image/${books[i].image}" alt="" />
-                           <span class="book-name"${books[i].name}</span>
-                           <span class="author">${books[i].publisher}</span>
-                           <span class="description">${books[i].description}</span>
+                           <span>${books[i].name}</span>
                         </span>
                      </a>
                       <a class="buy-btn" onclick="addToCart(${books[i].id})">Mượn sách <span class="price">${books[i].quantity}</span></a>
@@ -81,7 +80,7 @@ function getAllPublisher() {
         success: function (publisheres) {
             let content = '';
             for (let i = 0; i < publisheres.length; i++) {
-                content += `<li><a onclick="getCurrentPageByPublisher(${publisheres[i]})">${publisheres[i]}</a></li>`
+                content += `<li><a onclick="getCurrentPageByPublisher('${publisheres[i]}')">${publisheres[i]}</a></li>`
             }
             $('#publisher-list-content').html(content);
         }
@@ -116,10 +115,11 @@ function drawLoginDetails() {
     } else {    // already logged in
         let username = currentUser.username;
         let image = IMAGE_FOLDER + currentUser.image;
-        login_details_html += `<img src="${image}" alt="" height="30px"><a href="#" id="username-holder">${username}</a>
-<!--        <p><span> | </span><a href="#" onclick="doLogout()">  Đăng xuất  </a></p>-->
-        `;
-
+        login_details_html += `<img src="${image}" alt="" width="30px" height="30px">
+                            <div><a href="#" id="username-holder">${username}</a></div>
+                             <div><a href="#" onclick="doLogout()">  Đăng xuất  </a></div>
+                            
+                               `;
         navbar_ul_html += `<li><a onClick="getHomePage()">Trang chủ</a></li>
                             <li><a href="/Module4_CS_LibraryManagement_FE/pages/personal-info.html">Thông tin tài khoản</a></li>
                             <li><a href="/Module4_CS_LibraryManagement_FE/pages/ticket.html">Quản lý mượn / trả sách</a></li>
@@ -144,6 +144,38 @@ function homePage() {
     changeApiSource(API_BOOKS);
     getCurrentPage();
 }
+
+function searchBookByName() {
+    let q = $('#q').val()
+    let currentPageNumber = pageNumber + 1
+    $('#current-page').html(currentPageNumber);
+    $.ajax({
+        type: 'GET',
+        url: apiSource + `/page/${pageNumber}`+ `?q=${q}`,
+        success: function (page) {
+            let books = page.content
+            let content = '';
+            for (let i = 0; i < books.length; i++) {
+                content += `<li>
+                   <div class="product">
+                      <a href="#" class="info">
+                         <span class="holder">
+                           <img src="http://localhost:8080/image/${books[i].image}" alt="" />
+                           <span>${books[i].name}</span>
+                        </span>
+                     </a>
+                      <a class="buy-btn" onclick="addToCart(${books[i].id})">Mượn sách <span class="price">${books[i].quantity}</span></a>
+                  </div>
+               </li>`
+            }
+            $('#book-list-content').html(content);
+            totalPage = page.totalPages;
+            $('#total-page').html(totalPage)
+        }
+    })
+}
+
+
 
 $(document).ready(function () {
     drawLoginDetails();

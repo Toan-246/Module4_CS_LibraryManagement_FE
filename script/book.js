@@ -27,7 +27,7 @@ function getCurrentPage() {
             <td>${i + 1 + page.pageable.pageNumber * page.pageable.pageSize}</td>
             <td>${books[i].name}</td>
             <td>${books[i].quantity}</td>
-            <td><img src="http://localhost:8080/image/${books[i].image}" style="width: 150px"></td>
+            <td><img src="http://localhost:8080/image/${books[i].image}" style="height: 150px"></td>
             <td>${books[i].description}</td>
             <td>${books[i].publisher}</td>
             <td>${books[i].status}</td>
@@ -246,6 +246,7 @@ function editBook(id) {
     let description = $('#description').val();
     let publisher = $('#publisher').val();
     let image = $('#image').prop('files')[0];
+    if (image == undefined) image = new File([""], "empty-file");
     let status = $('#status').val();
     let category = $('#category').val();
     let book = new FormData();
@@ -329,11 +330,11 @@ function drawLoginDetailsForAdmin() {
     if (currentUser != null) { // already logged in
         // let username = currentUser.username;
         content += `<div class="info"><a href="#" id="username-holder">${currentUser.username}</a></div>
-                    <div class="image">
-                    <img src="http://localhost:8080/image/${currentUser.image}" class="img-circle elevation-2" alt="">
+                    <div class="image ml-2 mr-2">
+                    <img src="http://localhost:8080/image/${currentUser.image}" height="30px" class="img-circle elevation-2" alt="">
                     </div>
                     <p><span> | </span><a href="#" onclick="doLogout()">  Đăng xuất  </a></p>
-                    <p><span> | </span><a href="/Module4_CS_LibraryManagement_FE/pages/change-password.html">  Đổi mật khẩu  </a></p>\
+                    <p><span> | </span><a href="/Module4_CS_LibraryManagement_FE/pages/personal-info.html"> Thông tin tài khoản  </a></p>\
                           `
     } else {   // guest
         content += "<a href='/Module4_CS_LibraryManagement_FE/pages/login.html'></a>"
