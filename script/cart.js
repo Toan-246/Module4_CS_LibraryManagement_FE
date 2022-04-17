@@ -20,8 +20,8 @@ function drawCart() {
                <td>${books[i].publisher}</td>
                <td>${books[i].description}</td>
                <td>${books[i].status}</td>
-                <td><button class="btn btn-danger" data-toggle="modal"
-                data-target="#modal__remove-book" onclick="showModalRemoveBook(${books[i].id})"><i class="fa fa-trash"></i></button></td>
+                <td><button class="btn btn-danger" data-bs-toggle="modal"
+                data-bs-target="#modal__remove-book" onclick="showModalRemoveBook(${books[i].id})"><i class="fa fa-trash"></i></button></td>
                 </tr>`;
             }
             $("#table-body__books").html(content);
@@ -51,8 +51,8 @@ function showModalRemoveBook(bookId) {
          `;
             $("#div__remove-book-info").html(book_info);
 
-            let modal_footer = `<button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                    <button type="button" class="btn btn-danger" onclick="removeBookFromCart(${bookId})" aria-label="Close" class="close" data-dismiss="modal">Xóa</button>`;
+            let modal_footer = `<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-danger" onclick="removeBookFromCart(${bookId})" aria-label="Close" class="close" data-bs-dismiss="modal">Xóa</button>`;
             $("#modal-footer__remove-book").html(modal_footer);
 
         },
@@ -70,16 +70,44 @@ function removeBookFromCart(bookId) {
         headers: {
             "Authorization": currentUser.token
         },
-        success: function (){
+        success: function () {
             displaySuccessToast("Đã xóa sách khỏi giỏ");
             drawCart();
         },
         error: function (errorMessage) {
-            showErrorMessage(errorMessage.responseJSON.message);
+            displayFailureToast(errorMessage.responseJSON.message);
         }
     });
 }
 
+function createBorrowTicket() {
+    let userId = currentUser.id;
+    let duration = 30;
+
+    $.ajax({
+        type: "POST",
+        url: `http://localhost:8080/api/borrowTickets/${userId}?duration=${duration}`,
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+            'Authorization': 'Bearer ' + currentUser.token
+        },
+        success: function (borrowTicket) {
+            displaySuccessToast("Tạo phiếu mượn thành công! Vui lòng chờ xét duyệt.");
+            drawCart();
+        },
+        error: function (errorMessage) {
+            displayFailureToast(errorMessage.responseJSON.message);
+        }
+    });
+
+
+}
+
 $(document).ready(function () {
+    if (currentUser == null) {
+        location.href = '/Module4_CS_LibraryManagement_FE/pages/login.html';
+        return;
+    }
     drawCart();
 });
