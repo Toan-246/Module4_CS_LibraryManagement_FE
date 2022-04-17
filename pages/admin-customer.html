@@ -37,6 +37,7 @@
     <!-- Toastr -->
     <link rel="stylesheet" href="../../plugins/toastr/toastr.min.css">
 
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -88,11 +89,14 @@
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                     data-accordion="false">
-                    <li class="nav-header"><a href="/Module4_CS_LibraryManagement_FE/pages/admin-category.html">Quản lý danh mục</a></li>
-                    <li class="nav-header"><a href="/Module4_CS_LibraryManagement_FE/pages/admin-librarian.html">Quản lý thủ thư</a></li>
-                    <li class="nav-header"><a href="/Module4_CS_LibraryManagement_FE/pages/admin-customer.html">Quản lý người dùng</a></li>
-                    <li class="nav-header"><a href="/Module4_CS_LibraryManagement_FE/pages/personal-info.html">Thông tin tài khoản</a></li>
-
+                    <li class="nav-header"><a href="/Module4_CS_LibraryManagement_FE/pages/admin-category.html">Quản lý
+                        danh mục</a></li>
+                    <li class="nav-header"><a href="/Module4_CS_LibraryManagement_FE/pages/admin-librarian.html">Quản lý
+                        thủ thư</a></li>
+                    <li class="nav-header"><a href="/Module4_CS_LibraryManagement_FE/pages/admin-customer.html">Quản lý
+                        người dùng</a></li>
+                    <li class="nav-header"><a href="/Module4_CS_LibraryManagement_FE/pages/personal-info.html">Thông tin
+                        tài khoản</a></li>
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->
@@ -119,12 +123,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title col-10">Danh mục sách</h3>
-                                <button onclick="showCreateForm()" type="button" class="btn btn-outline-primary col-2"
-                                        data-toggle="modal"
-                                        data-target="#input-category">
-                                    Tạo mới
-                                </button>
+                                <h3 class="card-title col-11">Danh sách thủ thư</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
@@ -132,11 +131,16 @@
                                     <thead>
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">Tên danh mục</th>
-                                        <th scope="col" colspan="2"></th>
+                                        <th scope="col">Tên người dùng</th>
+                                        <th scope="col">Ảnh đại diện</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Số điện thoại</th>
+                                        <th scope="col">Địa chỉ</th>
+                                        <th scope="col">Trạng thái</th>
+                                        <th scope="col"></th>
                                     </tr>
                                     </thead>
-                                    <tbody id="category-list-content">
+                                    <tbody id="customer-list-content">
                                     </tbody>
 
                                 </table>
@@ -154,41 +158,44 @@
         <!-- /.content -->
     </div>
     <!-- /.modal -->
-    <div class="modal fade" id="input-category">
+    <div class="modal fade" id="modal_edit-customer">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="tittle-category-create">Tạo mới Danh mục</h4>
+                    <h4 class="modal-title" id="tittle-category-create">Thông tin người dùng</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="name">Tên danh mục</label>
-                        <input type="text" class="form-control" id="name" placeholder="Nhập tên danh mục">
+                        <label for="modal__input-username">Tên người dùng</label>
+                        <input type="text" class="form-control" id="modal__input-username" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="modal__input-email">Email</label>
+                        <input type="email" class="form-control" id="modal__input-email">
+                    </div>
+                    <div class="form-group">
+                        <label for="modal__input-phone">Số điện thoại</label>
+                        <input type="text" class="form-control" id="modal__input-phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="modal__input-address">Địa chỉ</label>
+                        <input type="text" class="form-control" id="modal__input-address">
+                    </div>
+                    <div class="form-group">
+                        <label for="modal__input-occupation">Nghề nghiệp</label>
+                        <input type="text" class="form-control" id="modal__input-occupation">
+                    </div>
+                    <div class="form-group">
+                        <label for="modal__input-active">Trạng thái</label>
+                        <select class="form-control" id="modal__input-active">
+
+                        </select>
                     </div>
                 </div>
-                <div class="modal-footer justify-content-between" id="footer-category-create">
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <div class="modal fade" id="delete-category">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Xóa danh mục</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>Bạn có muốn xóa không ?</p>
-                </div>
-                <div class="modal-footer justify-content-between" id="footer-category-delete">
+                <div class="modal-footer justify-content-between" id="modal_footer__edit-customer">
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -196,7 +203,6 @@
         <!-- /.modal-dialog -->
     </div>
 
-    <!-- /.modal -->
     <!-- /.content-wrapper -->
 </div>
 
@@ -243,7 +249,7 @@
 <script src="../../plugins/toastr/toastr.min.js"></script>
 
 <script src="../script/notification.js"></script>
-<script src="../script/category.js"></script>
+<script src="../script/admin-customer.js"></script>
 
 </body>
 </html>

@@ -5,6 +5,7 @@ let API_CATEGORIES = "http://localhost:8080/api/categories";
 
 let apiSource;
 
+
 function changeApiSource(source) {
     apiSource = source;
 }
@@ -145,6 +146,40 @@ function homePage() {
     changeApiSource(API_BOOKS);
     getCurrentPage();
 }
+
+function searchBookByName() {
+    let q = $('#q').val()
+    let currentPageNumber = pageNumber + 1
+    $('#current-page').html(currentPageNumber);
+    $.ajax({
+        type: 'GET',
+        url: apiSource + `/page/${pageNumber}`+ `?q=${q}`,
+        success: function (page) {
+            let books = page.content
+            let content = '';
+            for (let i = 0; i < books.length; i++) {
+                content += `<li>
+                   <div class="product">
+                      <a href="#" class="info">
+                         <span class="holder">
+                           <img src="http://localhost:8080/image/${books[i].image}" alt="" />
+                           <span class="book-name"${books[i].name}</span>
+                           <span class="author">${books[i].publisher}</span>
+                           <span class="description">${books[i].description}</span>
+                        </span>
+                     </a>
+                      <a class="buy-btn" onclick="addToCart(${books[i].id})">Mượn sách <span class="price">${books[i].quantity}</span></a>
+                  </div>
+               </li>`
+            }
+            $('#book-list-content').html(content);
+            totalPage = page.totalPages;
+            $('#total-page').html(totalPage)
+        }
+    })
+}
+
+
 
 $(document).ready(function () {
     drawLoginDetails();
