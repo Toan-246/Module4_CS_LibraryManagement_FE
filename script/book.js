@@ -34,8 +34,7 @@ function getCurrentPage() {
             <td>${books[i].category == null ? '' : books[i].category.name}</td>
             <td><button class="btn btn-primary"data-toggle="modal"
                                         data-target="#input-book" onclick="showEditForm(${books[i].id})"><i class="fa fa-edit"></i></button></td>
-            <td><button class="btn btn-danger" data-toggle="modal"
-                                        data-target="#delete-book" onclick="showDeleteForm(${books[i].id})"><i class="fa fa-trash"></i></button></td>
+            
         </tr>`
             }
             $('#book-table').html(content);
