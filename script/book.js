@@ -5,11 +5,80 @@ let totalPage = 1;
 let hasNext;
 let hasPrevious;
 
+
+let API_BOOKS = "http://localhost:8080/api/books";
+let API_CATEGORIES = "http://localhost:8080/api/categories";
+
+function changeApiSource(source) {
+    apiSource = source;
+}
 function getCurrentPage() {
 
     $.ajax({
         type: 'GET',
-        url:` http://localhost:8080/api/books/page/${pageNumber}`,
+        url: apiSource + `/page/${pageNumber}`,
+        success: function (page) {
+
+            console.log(hasPrevious, hasNext);
+            let books = page.content
+            let content = '';
+            for (let i = 0; i < books.length; i++) {
+                content += ` <tr>
+            <td>${i + 1 + page.pageable.pageNumber * page.pageable.pageSize}</td>
+            <td>${books[i].name}</td>
+            <td>${books[i].quantity}</td>
+            <td><img src="http://localhost:8080/image/${books[i].image}" style="width: 150px"></td>
+            <td>${books[i].description}</td>
+            <td>${books[i].publisher}</td>
+            <td>${books[i].status}</td>
+            <td>${books[i].category == null ? '' : books[i].category.name}</td>
+            <td><button class="btn btn-primary"data-toggle="modal"
+                                        data-target="#input-book" onclick="showEditForm(${books[i].id})"><i class="fa fa-edit"></i></button></td>
+            <td><button class="btn btn-danger" data-toggle="modal"
+                                        data-target="#delete-book" onclick="showDeleteForm(${books[i].id})"><i class="fa fa-trash"></i></button></td>
+        </tr>`
+            }
+            $('#book-table').html(content);
+            totalPage = page.totalPages;
+            $('#total-page').html(totalPage)
+
+            hasPrevious = !page.first
+            hasNext = !page.last
+            let currentPageNumber = pageNumber + 1
+            let nextPageNumber = currentPageNumber + 1
+            let previousPageNumber = currentPageNumber - 1
+
+
+
+            let content1 = '';
+            content1 += `<ul class="pagination justify-content-end">
+             <li class="page-item">
+               <a class="page-link"onclick="previousPage()" aria-label="Previous">
+                 <span aria-hidden="true">&laquo;</span>
+               </a>
+             </li>
+             ${hasPrevious ? '<li class="page-item" ><a class="page-link" onclick="previousPage()"><span id="previous-page"></span></a></li>' : ''}  
+             <li class="page-item" ><a class="page-link" onclick="getCurrentPage()"><b><span id="current-page"></span></b></a></li>     
+             ${hasNext ? '<li class="page-item" ><a class="page-link" onclick="nextPage()"><span id="next-page"></span></a></li>' : '' }
+             <li class="page-item">
+               <a class="page-link" onclick="nextPage()" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+             </li>
+          </ul>`
+            $('#paging').html(content1);
+            $('#current-page').html(currentPageNumber);
+            $('#previous-page').html(previousPageNumber);
+            $('#next-page').html(nextPageNumber);
+        }
+    })
+}
+
+function searchBookByName() {
+    let q = $('#q').val()
+    $.ajax({
+        type: 'GET',
+        url: apiSource + `/page/${pageNumber}`+ `?q=${q}`,
         success: function (page) {
 
             console.log(hasPrevious, hasNext);
@@ -273,15 +342,72 @@ function drawLoginDetailsForAdmin() {
     $("#login-details-librarian").html(content);
 }
 
+function getAllCategories() {
+    $.ajax({
+        type: 'GET',
+        url: 'http://localhost:8080/api/categories',
+        success: function (categories) {
+            let content = '';
+            for (let i = 0; i < categories.length; i++) {
+                content += `<li class="nav-item">
+                                        <a href="#" class="nav-link" onclick="getCurrentPageByCategory(${categories[i].id})">
+                                            <i class="far fa-dot-circle nav-icon"></i>
+                                            ${categories[i].name}
+                                        </a>
+                             </li>`
+            }
+            $('#categories-list-content').html(content);
+        }
+    })
+}
+function getCurrentPageByCategory(id) {
+    let newApiSource = API_CATEGORIES + `/${id}`;
+    changeApiSource(newApiSource);
+    pageNumber = 0;
+    getCurrentPage();
+}
+
+function getAllPublisher() {
+    $.ajax({
+        type: 'GET',
+        url: 'http://localhost:8080/api/books',
+        success: function (publisheres) {
+            let content = '';
+            for (let i = 0; i < publisheres.length; i++) {
+                content += `<li class="nav-item">
+                                        <a href="#" class="nav-link" onclick="getCurrentPageByPublisher(${publisheres[i]})">
+                                            <i class="far fa-dot-circle nav-icon"></i>
+                                            ${publisheres[i]}
+                                        </a>
+                            </li>`
+            }
+            $('#publisher-list-content').html(content);
+        }
+    })
+}
+function getCurrentPageByPublisher(publisher) {
+    let newApiSource = API_BOOKS + `/${publisher}`;
+    changeApiSource(newApiSource);
+    pageNumber = 0;
+    getCurrentPage();
+}
 
 function doLogout() {
     sessionStorage.removeItem("currentUser");
     location.href = '/Module4_CS_LibraryManagement_FE/pages/login.html';
 }
+function homePage(){
+    changeApiSource(API_BOOKS);
+    getCurrentPage();
+}
 $(document).ready(function () {
     if (currentUser!=null){
+        changeApiSource(API_BOOKS);
         getCurrentPage();
         drawLoginDetailsForAdmin();
+        getAllCategories();
+        getAllPublisher();
+
     }
     else {
         location.href = '/Module4_CS_LibraryManagement_FE/pages/login.html';
