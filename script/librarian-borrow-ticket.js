@@ -40,10 +40,12 @@ function borrowTicketDetails(id) {
         },
         success: function (details) {
             let contentDetails = `
-                <p>Tên khách hàng: ${details.customer.username}</p>
-                <p>Ngày mượn: ${details.borrowDate}</p>
-                <p>Thời gian mượn: ${details.duration}</p>
-                <div id="list_book"></div>
+            <ul>
+                <li>Tên khách hàng: ${details.customer.username}</li>
+                <li>Ngày mượn: ${details.borrowDate}</li>
+                <li>Thời gian mượn: ${details.duration}</li>
+                <li><ul id="list_book">Danh sach</ul></li>
+            </ul>
             `
             $('#ticket-info').html(contentDetails);
 
@@ -54,9 +56,9 @@ function borrowTicketDetails(id) {
                     'Authorization': 'Bearer ' + currentUser.token
                 },
                 success: function (books) {
-                    let contentDetails1 = '<p>Danh sách: </p>'
+                    let contentDetails1 = 'Danh sách';
                     for (let i = 0; i < books.length; i++){
-                        contentDetails1 += `<p>${books[i].name}</p>`;
+                        contentDetails1 += `<li>${books[i].name}</li>`;
                     }
                     $('#list_book').html(contentDetails1);
                 }
