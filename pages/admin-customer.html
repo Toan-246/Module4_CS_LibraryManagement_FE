@@ -89,14 +89,14 @@
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                     data-accordion="false">
+                    <li class="nav-header"><a href="/Module4_CS_LibraryManagement_FE/pages/personal-info.html">Thông tin
+                        tài khoản</a></li>
                     <li class="nav-header"><a href="/Module4_CS_LibraryManagement_FE/pages/admin-category.html">Quản lý
                         danh mục</a></li>
                     <li class="nav-header"><a href="/Module4_CS_LibraryManagement_FE/pages/admin-librarian.html">Quản lý
                         thủ thư</a></li>
                     <li class="nav-header"><a href="/Module4_CS_LibraryManagement_FE/pages/admin-customer.html">Quản lý
                         người dùng</a></li>
-                    <li class="nav-header"><a href="/Module4_CS_LibraryManagement_FE/pages/personal-info.html">Thông tin
-                        tài khoản</a></li>
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->
@@ -110,7 +110,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Quản lý danh mục</h1>
+                        <h1>Quản lý người dùng</h1>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -123,7 +123,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title col-11">Danh sách thủ thư</h3>
+                                <h3 class="card-title col-11">Danh sách người dùng</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
@@ -189,67 +189,70 @@
                         <input type="text" class="form-control" id="modal__input-occupation">
                     </div>
                     <div class="form-group">
-                        <label for="modal__input-active">Trạng thái</label>
-                        <select class="form-control" id="modal__input-active">
-
+                        <label for="modal__input-role">Vai trò</label>
+                        <select class="form-select" id="modal__input-role">
                         </select>
                     </div>
+                    <div class="form-group">
+                        <label for="modal__input-active">Trạng thái</label>
+                        <select class="form-select" id="modal__input-active">
+                        </select>
+                    </div>
+                    <div class="modal-footer justify-content-between" id="modal_footer__edit-customer">
+                    </div>
                 </div>
-                <div class="modal-footer justify-content-between" id="modal_footer__edit-customer">
-                </div>
+                <!-- /.modal-content -->
             </div>
-            <!-- /.modal-content -->
+            <!-- /.modal-dialog -->
         </div>
-        <!-- /.modal-dialog -->
+
+        <!-- /.content-wrapper -->
     </div>
-
-    <!-- /.content-wrapper -->
 </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"></script>
+    <!-- jQuery -->
+    <script src="../../plugins/jquery/jquery.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+        $.widget.bridge('uibutton', $.ui.button)
+    </script>
+    <!-- Bootstrap 4 -->
+    <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- ChartJS -->
+    <script src="../../plugins/chart.js/Chart.min.js"></script>
+    <!-- Sparkline -->
+    <script src="../../plugins/sparklines/sparkline.js"></script>
+    <!-- JQVMap -->
+    <script src="../../plugins/jqvmap/jquery.vmap.min.js"></script>
+    <script src="../../plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="../../plugins/jquery-knob/jquery.knob.min.js"></script>
+    <!-- daterangepicker -->
+    <script src="../../plugins/moment/moment.min.js"></script>
+    <script src="../../plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="../../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- Summernote -->
+    <script src="../../plugins/summernote/summernote-bs4.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="../../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../../dist/js/adminlte.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="../../dist/js/demo.js"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="../../dist/js/pages/dashboard.js"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"></script>
-<!-- jQuery -->
-<script src="../../plugins/jquery/jquery.min.js"></script>
-<!-- jQuery UI 1.11.4 -->
-<script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
-    $.widget.bridge('uibutton', $.ui.button)
-</script>
-<!-- Bootstrap 4 -->
-<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- ChartJS -->
-<script src="../../plugins/chart.js/Chart.min.js"></script>
-<!-- Sparkline -->
-<script src="../../plugins/sparklines/sparkline.js"></script>
-<!-- JQVMap -->
-<script src="../../plugins/jqvmap/jquery.vmap.min.js"></script>
-<script src="../../plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
-<!-- jQuery Knob Chart -->
-<script src="../../plugins/jquery-knob/jquery.knob.min.js"></script>
-<!-- daterangepicker -->
-<script src="../../plugins/moment/moment.min.js"></script>
-<script src="../../plugins/daterangepicker/daterangepicker.js"></script>
-<!-- Tempusdominus Bootstrap 4 -->
-<script src="../../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-<!-- Summernote -->
-<script src="../../plugins/summernote/summernote-bs4.min.js"></script>
-<!-- overlayScrollbars -->
-<script src="../../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-<!-- AdminLTE App -->
-<script src="../../dist/js/adminlte.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="../../dist/js/demo.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="../../dist/js/pages/dashboard.js"></script>
+    <script src="../../plugins/sweetalert2/sweetalert2.min.js"></script>
+    <!-- Toastr -->
+    <script src="../../plugins/toastr/toastr.min.js"></script>
 
-<script src="../../plugins/sweetalert2/sweetalert2.min.js"></script>
-<!-- Toastr -->
-<script src="../../plugins/toastr/toastr.min.js"></script>
-
-<script src="../script/notification.js"></script>
-<script src="../script/admin-customer.js"></script>
+    <script src="../script/notification.js"></script>
+    <script src="../script/admin-customer.js"></script>
 
 </body>
 </html>

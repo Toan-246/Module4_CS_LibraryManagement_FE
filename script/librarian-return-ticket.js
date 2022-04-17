@@ -1,3 +1,8 @@
+let pageNumber = 0;
+let totalPage = 1;
+let hasNext;
+let hasPrevious;
+
 function saveReturnTicket(borrowTicketId) {
 
     $.ajax({
@@ -26,6 +31,7 @@ function getAllReturnTicketNotReviewed() {
             'Authorization': 'Bearer ' + currentUser.token
         },
         success: function (returnTickets) {
+            // let returnTickets = page.content
             let content = '';
             for (let i = 0; i < returnTickets.length; i++) {
                 content += `<tr>
@@ -40,10 +46,47 @@ function getAllReturnTicketNotReviewed() {
     </tr>`
             }
             $('#table-body__return-ticket').html(content);
+
+            hasPrevious = !page.first
+            hasNext = !page.last
+            let currentPageNumber = pageNumber + 1
+            let nextPageNumber = currentPageNumber + 1
+            let previousPageNumber = currentPageNumber - 1
+
+            let content1 = '';
+            content1 += `<ul class="pagination justify-content-end">
+             <li class="page-item">
+               <a class="page-link"onclick="previousPage()" aria-label="Previous">
+                 <span aria-hidden="true">&laquo;</span>
+               </a>
+             </li>
+             ${hasPrevious ? '<li class="page-item" ><a class="page-link" onclick="previousPage()"><span id="previous-page"></span></a></li>' : ''}  
+             <li class="page-item" ><a class="page-link" onclick="getCurrentPage()"><b><span id="current-page"></span></b></a></li>     
+             ${hasNext ? '<li class="page-item" ><a class="page-link" onclick="nextPage()"><span id="next-page"></span></a></li>' : '' }
+             <li class="page-item">
+               <a class="page-link" onclick="nextPage()" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+             </li>
+          </ul>`
+            $('#paging').html(content1);
+            $('#current-page').html(currentPageNumber);
+            $('#previous-page').html(previousPageNumber);
+            $('#next-page').html(nextPageNumber);
         }
     })
 }
+function nextPage() {
+    pageNumber++;
+    getAllReturnTicketNotReviewed();
+}
 
+function previousPage() {
+    if (pageNumber > 0){
+        pageNumber--;
+        getAllReturnTicketNotReviewed();
+    }
+}
 function showModalReturnTicket(returnTicketId) {
     $.ajax({
         url: `http://localhost:8080/api/returnTickets/${returnTicketId}`,
@@ -125,7 +168,33 @@ function denyReturnTicket(returnTicketId) {
         }
     })
 }
+function drawLoginDetailsForAdmin() {
+    let content = "";
+    if (currentUser != null) { // already logged in
+        // let username = currentUser.username;
+        content += `<div class="info"><a href="#" id="username-holder">${currentUser.username}</a></div>
+                    <div class="image ml-2 mr-2">
+                    <img src="http://localhost:8080/image/${currentUser.image}" height="30px" class="img-circle elevation-2" alt="">
+                    </div>
+                    <p><span> | </span><a href="#" onclick="doLogout()">  Đăng xuất  </a></p>
+                    <p><span> | </span><a href="/Module4_CS_LibraryManagement_FE/pages/personal-info.html"> Thông tin tài khoản  </a></p>\
+                          `
+    } else {   // guest
+        content += "<a href='/Module4_CS_LibraryManagement_FE/pages/login.html'></a>"
+    }
 
+    $("#login-details-librarian").html(content);
+}
+function doLogout() {
+    sessionStorage.removeItem("currentUser");
+    location.href = '/Module4_CS_LibraryManagement_FE/pages/login.html';
+}
 $(document).ready(function () {
-    getAllReturnTicketNotReviewed();
+    if (currentUser!=null){
+        getAllReturnTicketNotReviewed();
+        drawLoginDetailsForAdmin();
+    }
+    else {
+        location.href = '/Module4_CS_LibraryManagement_FE/pages/login.html';
+    }
 })

@@ -27,15 +27,14 @@ function getCurrentPage() {
             <td>${i + 1 + page.pageable.pageNumber * page.pageable.pageSize}</td>
             <td>${books[i].name}</td>
             <td>${books[i].quantity}</td>
-            <td><img src="http://localhost:8080/image/${books[i].image}" style="width: 150px"></td>
+            <td><img src="http://localhost:8080/image/${books[i].image}" style="height: 150px"></td>
             <td>${books[i].description}</td>
             <td>${books[i].publisher}</td>
             <td>${books[i].status}</td>
             <td>${books[i].category == null ? '' : books[i].category.name}</td>
             <td><button class="btn btn-primary"data-toggle="modal"
                                         data-target="#input-book" onclick="showEditForm(${books[i].id})"><i class="fa fa-edit"></i></button></td>
-            <td><button class="btn btn-danger" data-toggle="modal"
-                                        data-target="#delete-book" onclick="showDeleteForm(${books[i].id})"><i class="fa fa-trash"></i></button></td>
+            
         </tr>`
             }
             $('#book-table').html(content);
@@ -246,6 +245,7 @@ function editBook(id) {
     let description = $('#description').val();
     let publisher = $('#publisher').val();
     let image = $('#image').prop('files')[0];
+    if (image == undefined) image = new File([""], "empty-file");
     let status = $('#status').val();
     let category = $('#category').val();
     let book = new FormData();
@@ -410,6 +410,6 @@ $(document).ready(function () {
 
     }
     else {
-        location.href = '/Module4_CS_LibraryManagement_FE/pages/login.html';
+
     }
 })
