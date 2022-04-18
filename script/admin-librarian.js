@@ -95,9 +95,31 @@ function editUser(id) {
 
 
 }
+function drawLoginDetailsForAdmin() {
+    let content = "";
+    if (currentUser != null) { // already logged in
+        // let username = currentUser.username;
+        content += `<div class="info"><a href="#" id="username-holder">${currentUser.username}</a></div>
+                    <div class="image ml-2 mr-2">
+                    <img src="http://localhost:8080/image/${currentUser.image}" height="30px" class="img-circle elevation-2" alt="">
+                    </div>
+                    <p><span> | </span><a href="#" onclick="doLogout()">  Đăng xuất  </a></p>
+                    <p><span> | </span><a href='/Module4_CS_LibraryManagement_FE/pages/personal-info.html'> Thông tin tài khoản  </a></p>\
+                          `
+    } else {   // guest
+        content += "<a href='/Module4_CS_LibraryManagement_FE/pages/login.html'></a>"
+    }
+
+    $("#login-details-admin").html(content);
+}
+function doLogout() {
+    sessionStorage.removeItem("currentUser");
+    location.href = '/Module4_CS_LibraryManagement_FE/pages/login.html';
+}
 
 $(document).ready(function () {
     if (currentUser == null)
         location.href = "/Module4_CS_LibraryManagement_FE/pages/login.html"
     showAllLibrarian();
+    drawLoginDetailsForAdmin()
 })
