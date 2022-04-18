@@ -183,7 +183,7 @@ function drawLoginDetailsForAdmin() {
                     <div class="image ml-2 mr-2">
                     <img src="http://localhost:8080/image/${currentUser.image}" height="30px" class="img-circle elevation-2" alt="">
                     </div>
-                    <p><span> | </span><a onclick="doLogout()">  Đăng xuất  </a></p>
+                    <p><span> | </span><a href="#" onclick="doLogout()">  Đăng xuất  </a></p>
                     <p><span> | </span><a href="/Module4_CS_LibraryManagement_FE/pages/personal-info.html"> Thông tin tài khoản  </a></p>\
                           `
     } else {   // guest
@@ -192,6 +192,7 @@ function drawLoginDetailsForAdmin() {
 
     $("#login-details-librarian").html(content);
 }
+
 function doLogout() {
     sessionStorage.removeItem("currentUser");
     location.href = '/Module4_CS_LibraryManagement_FE/pages/login.html';
