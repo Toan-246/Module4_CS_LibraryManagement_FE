@@ -6,3 +6,22 @@
     align-self: center;
     margin-right: 1em;
 }
+
+.ul_pagination {
+    margin-right: auto;
+    display: flex;
+    gap: 1em;
+}
+
+.ul_pagination > * {
+    font-size: 1.2em;
+    border: 1px solid black;
+    border-radius: 3px;
+    padding-inline: 1em;
+}
+
+#q, #button-search {
+    padding: 0.5em 1em;
+    border-radius: 3px;
+}
+
