@@ -23,15 +23,15 @@ function saveReturnTicket(borrowTicketId) {
 
 function getAllReturnTicketNotReviewed() {
     $.ajax({
-        url: `http://localhost:8080/api/returnTickets/notReviewed/page/${pageNumber}`,
+        url: `http://localhost:8080/api/returnTickets/notReviewed`,
         type: 'GET',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + currentUser.token
         },
-        success: function (page) {
-            let returnTickets = page.content
+        success: function (returnTickets) {
+            // let returnTickets = page.content
             let content = '';
             for (let i = 0; i < returnTickets.length; i++) {
                 content += `<tr>

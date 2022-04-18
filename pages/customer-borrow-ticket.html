@@ -30,27 +30,25 @@
 <div class="container mt-4">
     <div class="d-flex gap-5">
         <a class="btn btn-outline-primary" href="/Module4_CS_LibraryManagement_FE/index.html">Trở về</a>
-        <button type="button" class="btn btn-primary"
-                data-bs-toggle="modal"
-                data-bs-target="#modal__borrow-book">
-            Tạo phiếu mượn toàn bộ giỏ
-        </button>
+        <a class="btn btn-outline-primary" href="/Module4_CS_LibraryManagement_FE/pages/customer-borrow-ticket.html">Phiếu mượn</a>
+        <a class="btn btn-outline-primary" href="/Module4_CS_LibraryManagement_FE/pages/customer-return-ticket.html">Phiếu trả</a>
     </div>
     <div class="card-body">
         <table id="example2" class="table table-bordered table-hover">
             <thead>
+            <h3>Danh sách phiếu mượn</h3>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Tên sách</th>
-                <th scope="col">Ảnh</th>
-                <th scope="col">Danh mục</th>
-                <th scope="col">Nhà xuất bản</th>
-                <th scope="col">Mô tả</th>
-                <th scope="col">Tình trạng</th>
+                <th scope="col">Mã số</th>
+                <th scope="col">Ngày mượn</th>
+                <th scope="col">Thời hạn thuê</th>
+                <th scope="col">Được xét duyệt?</th>
+                <th scope="col">Được chấp nhận?</th>
+                <th scope="col">Đã trả?</th>
                 <th></th>
             </tr>
             </thead>
-            <tbody id="table-body__books">
+            <tbody id="table-body__tickets">
             </tbody>
         </table>
         <div>
@@ -63,21 +61,18 @@
 
 </div>
 <!-- /.modal -->
-<div class="modal fade" id="modal__borrow-book">
+<div class="modal fade" id="modal__borrow-ticket-detail">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Tạo phiếu mượn sách</h4>
+                <h4 class="modal-title">Chi tiết phiếu mượn</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" id="modal-body__borrow-ticket-detail">
                 <p>Tạo phiếu mượn sách?</p>
             </div>
-            <div class="modal-footer justify-content-between" id="modal-footer__borrow">
+            <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                <button type="button" class="btn btn-success" onclick="createBorrowTicket()" aria-label="Close"
-                        class="close" data-bs-dismiss="modal">Đồng ý
-                </button>
             </div>
         </div>
         <!-- /.modal-content -->
@@ -86,17 +81,17 @@
 </div>
 
 
-<div class="modal fade" id="modal__remove-book">
+<div class="modal fade" id="modal__return-book">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Xóa khỏi giỏ</h4>
+                <h4 class="modal-title">Trả sách</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div id="div__remove-book-info"></div>
+                <div id="ticket-info"></div>
             </div>
-            <div class="modal-footer justify-content-between" id="modal-footer__remove-book">
+            <div class="modal-footer justify-content-between" id="accept-or-not">
             </div>
         </div>
         <!-- /.modal-content -->
@@ -111,7 +106,7 @@
         crossorigin="anonymous"></script>
 
 <script src="../script/display-message.js"></script>
-<script src="../script/cart.js"></script>
+<script src="../script/customer-borrow-ticket.js"></script>
 
 </body>
 </html>
