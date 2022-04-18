@@ -3,6 +3,9 @@ let totalPage = 1;
 let API_BOOKS = "http://localhost:8080/api/books";
 let API_CATEGORIES = "http://localhost:8080/api/categories";
 
+let hasNext;
+let hasPrevious;
+
 let apiSource;
 
 function changeApiSource(source) {
@@ -34,6 +37,51 @@ function getCurrentPage() {
             $('#book-list-content').html(content);
             totalPage = page.totalPages;
             $('#total-page').html(totalPage)
+
+
+            hasPrevious = !page.first
+            hasNext = !page.last
+            let currentPageNumber = pageNumber + 1
+            let nextPageNumber = currentPageNumber + 1
+            let previousPageNumber = currentPageNumber - 1
+
+            let content1 = '';
+          //   content1 += `<ul class="pagination justify-content-end">
+          //    <li class="page-item">
+          //      <a class="page-link"onclick="previousPage()" aria-label="Previous">
+          //        <span aria-hidden="true">&laquo;</span>
+          //      </a>
+          //    </li>
+          //    ${hasPrevious ? '<li class="page-item" ><a class="page-link" onclick="previousPage()"><span id="previous-page"></span></a></li>' : ''}
+          //    <li class="page-item" ><a class="page-link" onclick="getCurrentPage()"><b><span id="current-page"></span></b></a></li>
+          //    ${hasNext ? '<li class="page-item" ><a class="page-link" onclick="nextPage()"><span id="next-page"></span></a></li>' : '' }
+          //    <li class="page-item">
+          //      <a class="page-link" onclick="nextPage()" aria-label="Next">
+          //       <span aria-hidden="true">&raquo;</span>
+          //     </a>
+          //    </li>
+          // </ul>`
+            content1 += `<div class="ul_pagination right low">
+             <div class="page-item">
+               <a class="page-link"onclick="previousPage()" aria-label="Previous">
+                 <span aria-hidden="true">&laquo;</span>
+               </a>
+             </div>
+             ${hasPrevious ? '<div class="page-item" ><a class="page-link" onclick="previousPage()"><span id="previous-page"></span></a></div>' : ''}  
+             <div class="page-item" ><a class="page-link" onclick="getCurrentPage()"><b><span id="current-page"></span></b></a></div>     
+             ${hasNext ? '<div class="page-item" ><a class="page-link" onclick="nextPage()"><span id="next-page"></span></a></div>' : '' }
+             <div class="page-item">
+               <a class="page-link" onclick="nextPage()" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+             </div>
+          </div>`
+
+
+            $('#paging').html(content1);
+            $('#current-page').html(currentPageNumber);
+            $('#previous-page').html(previousPageNumber);
+            $('#next-page').html(nextPageNumber);
         }
     })
 }
