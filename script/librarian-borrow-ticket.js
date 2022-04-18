@@ -167,12 +167,6 @@ function drawLoginDetailsForAdmin() {
 
     $("#login-details-librarian").html(content);
 }
-
-function doLogout() {
-    sessionStorage.removeItem("currentUser");
-    location.href = '/Module4_CS_LibraryManagement_FE/pages/login.html';
-}
-
 $(document).ready(function () {
     if (currentUser !=null){
         getTicketFromAllCustomer();
