@@ -367,6 +367,13 @@ function getCurrentPageByCategory(id) {
     getCurrentPage();
 }
 
+function getCurrentPageAllBook() {
+    let newApiSource = API_BOOKS;
+    changeApiSource(newApiSource);
+    pageNumber = 0;
+    getCurrentPage();
+}
+
 function getAllPublisher() {
     $.ajax({
         type: 'GET',
