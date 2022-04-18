@@ -46,21 +46,6 @@ function getCurrentPage() {
             let previousPageNumber = currentPageNumber - 1
 
             let content1 = '';
-          //   content1 += `<ul class="pagination justify-content-end">
-          //    <li class="page-item">
-          //      <a class="page-link"onclick="previousPage()" aria-label="Previous">
-          //        <span aria-hidden="true">&laquo;</span>
-          //      </a>
-          //    </li>
-          //    ${hasPrevious ? '<li class="page-item" ><a class="page-link" onclick="previousPage()"><span id="previous-page"></span></a></li>' : ''}
-          //    <li class="page-item" ><a class="page-link" onclick="getCurrentPage()"><b><span id="current-page"></span></b></a></li>
-          //    ${hasNext ? '<li class="page-item" ><a class="page-link" onclick="nextPage()"><span id="next-page"></span></a></li>' : '' }
-          //    <li class="page-item">
-          //      <a class="page-link" onclick="nextPage()" aria-label="Next">
-          //       <span aria-hidden="true">&raquo;</span>
-          //     </a>
-          //    </li>
-          // </ul>`
             content1 += `<div class="ul_pagination right low">
              <div class="page-item">
                <a class="page-link"onclick="previousPage()" aria-label="Previous">
