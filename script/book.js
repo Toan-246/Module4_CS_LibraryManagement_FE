@@ -416,6 +416,6 @@ $(document).ready(function () {
 
     }
     else {
-
+        location.href = "/Module4_CS_LibraryManagement_FE/pages/login.html"
     }
 })
