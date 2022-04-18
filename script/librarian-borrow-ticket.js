@@ -7,7 +7,7 @@ let hasPrevious;
 function getTicketFromAllCustomer() {
     $.ajax({
         type: "GET",
-        url: `http://localhost:8080/api/borrowtickets?page=${pageNumber}`,
+        url: `http://localhost:8080/api/borrowTickets?page=${pageNumber}`,
         headers: {
             'Authorization': 'Bearer ' + currentUser.token
         },
@@ -74,15 +74,15 @@ function previousPage() {
 }
 
 function acceptOrNot(id) {
-    let content = `<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="denyPermission(${id})">Không chấp nhận</button>
-                    <button type="button" class="btn btn-danger" onclick="acceptPermission(${id})" aria-label="Close" class="close" data-dismiss="modal" onclick="acceptPermission(id)">Chấp nhận</button>`;
+    let content = `<button type="button" class="btn btn-danger" data-dismiss="modal" onclick="denyPermission(${id})">Không chấp nhận</button>
+                    <button type="button" class="btn btn-success" onclick="acceptPermission(${id})" aria-label="Close" class="close" data-dismiss="modal" onclick="acceptPermission(id)">Chấp nhận</button>`;
     $('#accept-or-not').html(content)
 }
 
 function borrowTicketDetails(id) {
     $.ajax({
         type: 'GET',
-        url: `http://localhost:8080/api/borrowtickets/${id}/details`,
+        url: `http://localhost:8080/api/borrowTickets/${id}/details`,
         headers: {
             'Authorization': 'Bearer ' + currentUser.token
         },
@@ -91,7 +91,7 @@ function borrowTicketDetails(id) {
             <ul>
                 <li>Tên khách hàng: ${details.customer.username}</li>
                 <li>Ngày mượn: ${details.borrowDate}</li>
-                <li>Thời gian mượn: ${details.duration}</li>
+                <li>Thời gian mượn: ${details.duration} ngày</li>
                 <li><ul id="list_book">Danh sach</ul></li>
             </ul>
             `
@@ -99,7 +99,7 @@ function borrowTicketDetails(id) {
 
             $.ajax({
                 type: 'GET',
-                url: `http://localhost:8080/api/borrowtickets/${id}/books`,
+                url: `http://localhost:8080/api/borrowTickets/${id}/books`,
                 headers: {
                     'Authorization': 'Bearer ' + currentUser.token
                 },
@@ -121,7 +121,7 @@ function borrowTicketDetails(id) {
 function denyPermission(id) {
     $.ajax({
         type: 'POST',
-        url: `http://localhost:8080/api/borrowtickets/${id}/deny`,
+        url: `http://localhost:8080/api/borrowTickets/${id}/deny`,
         headers: {
             'Authorization': 'Bearer ' + currentUser.token
         },
@@ -134,7 +134,7 @@ function denyPermission(id) {
 function acceptPermission(id) {
     $.ajax({
         type: 'POST',
-        url: `http://localhost:8080/api/borrowtickets/${id}/accept`,
+        url: `http://localhost:8080/api/borrowTickets/${id}/accept`,
         headers: {
             'Authorization': 'Bearer ' + currentUser.token
         },
