@@ -12,12 +12,13 @@ function getTicketFromAllCustomer() {
             'Authorization': 'Bearer ' + currentUser.token
         },
         success: function (page) {
+            totalPage = page.totalPages;
             let borrowTickets = page.content;
             let content = '';
             for (let i = 0; i < borrowTickets.length; i++) {
                 content += `
             <tr>
-                <td>${i + 1}</td>
+                <td>${i + 1 + page.pageable.pageNumber * page.pageable.pageSize}</td>
                 <td>${borrowTickets[i].customer.username}</td>
                 <td>${borrowTickets[i].borrowDate}</td>
                 <td>${borrowTickets[i].duration}</td>
@@ -60,7 +61,7 @@ function getTicketFromAllCustomer() {
 }
 
 function nextPage() {
-    if (pageNumber-1 < totalPage + 1) {
+    if (pageNumber < totalPage - 1) {
         pageNumber++;
         getTicketFromAllCustomer();
     }

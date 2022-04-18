@@ -23,19 +23,21 @@ function saveReturnTicket(borrowTicketId) {
 
 function getAllReturnTicketNotReviewed() {
     $.ajax({
-        url: `http://localhost:8080/api/returnTickets/notReviewed`,
+        url: `http://localhost:8080/api/returnTickets/notReviewed/page/${pageNumber}`,
         type: 'GET',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + currentUser.token
         },
-        success: function (returnTickets) {
+        success: function (page) {
+            let returnTickets = page.content
+            totalPage = page.totalPages;
             // let returnTickets = page.content
             let content = '';
             for (let i = 0; i < returnTickets.length; i++) {
                 content += `<tr>
-        <td>${i + 1}</td>
+        <td>${i + 1 + page.pageable.pageNumber * page.pageable.pageSize}</td>
         <td>${returnTickets[i].borrowTicket.customer.username}</td>
         <td>${returnTickets[i].borrowTicket.borrowDate}</td>
         <td>${returnTickets[i].borrowTicket.duration}</td>
@@ -77,8 +79,13 @@ function getAllReturnTicketNotReviewed() {
     })
 }
 function nextPage() {
-    pageNumber++;
-    getAllReturnTicketNotReviewed();
+    if (pageNumber < totalPage - 1){
+        pageNumber++;
+        getAllReturnTicketNotReviewed();
+    }
+    // pageNumber++;
+    // getAllReturnTicketNotReviewed();
+
 }
 
 function previousPage() {
