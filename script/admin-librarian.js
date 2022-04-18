@@ -48,6 +48,11 @@ function showEditForm(id) {
             $('#modal__input-phone').val(user.phone);
             $('#modal__input-address').val(user.address);
             $('#modal__input-occupation').val(user.occupation);
+            $('#modal__input-role').html(`
+                <option value="1" ${user.role.id == 1 ? 'selected' : ''}>Admin</option>
+                <option value="2" ${user.role.id == 2 ? 'selected' : ''}>Thủ thư</option>
+                <option value="3" ${user.role.id == 3 ? 'selected' : ''}>Người dùng</option>
+            `);
             $('#modal__input-active').html(`
                 <option value="true" ${user.active ? 'selected' : ''}>Đang hoạt động</option>
                 <option value="false" ${!user.active ? 'selected' : ''}>Đã khóa</option>
@@ -66,6 +71,8 @@ function editUser(id) {
     let address = $("#modal__input-address").val();
     let occupation = $("#modal__input-occupation").val();
     let active = $("#modal__input-active").val();
+    let role = $("#modal__input-role").val();
+
 
     let userInfoForm = new FormData();
     userInfoForm.append("email", email);
@@ -73,6 +80,7 @@ function editUser(id) {
     userInfoForm.append("address", address);
     userInfoForm.append("occupation", occupation);
     userInfoForm.append("active", active);
+    userInfoForm.append("role", role);
 
     $.ajax({
         type: 'POST',

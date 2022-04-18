@@ -22,7 +22,7 @@ function getCurrentPage() {
             for (let i = 0; i < books.length; i++) {
                 content += `<li>
                    <div class="product">
-                      <a href="#" class="info">
+                      <a class="info" >
                          <span class="holder">
                            <img src="http://localhost:8080/image/${books[i].image}" alt="" />
                            <span>${books[i].name}</span>
@@ -158,7 +158,7 @@ function searchBookByName() {
             for (let i = 0; i < books.length; i++) {
                 content += `<li>
                    <div class="product">
-                      <a href="#" class="info">
+                      <a class="info">
                          <span class="holder">
                            <img src="http://localhost:8080/image/${books[i].image}" alt="" />
                            <span>${books[i].name}</span>
