@@ -158,6 +158,7 @@ function createNewBook() {
     let description = $('#description').val();
     let publisher = $('#publisher').val();
     let image = $('#image').prop('files')[0];
+    if (image == undefined) image = new File([""], "empty-file");
     let status = $('#status').val();
     let category = $('#category').val();
     let book = new FormData();
@@ -183,8 +184,8 @@ function createNewBook() {
             getCurrentPage();
             showSuccessMessage('Tạo mới thành công');
         },
-        error: function () {
-            showErrorMessage("Tạo mới thất bại");
+        error: function (errorMessage) {
+            showErrorMessage(errorMessage.responseJSON.message);
         }
     })
 }
