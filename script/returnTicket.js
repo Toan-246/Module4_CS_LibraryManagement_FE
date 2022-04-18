@@ -77,8 +77,13 @@ function getAllReturnTicketNotReviewed() {
     })
 }
 function nextPage() {
-    pageNumber++;
-    getAllReturnTicketNotReviewed();
+    if (pageNumber < totalPage - 1){
+        pageNumber++;
+        getAllReturnTicketNotReviewed();
+    }
+    // pageNumber++;
+    // getAllReturnTicketNotReviewed();
+
 }
 
 function previousPage() {
