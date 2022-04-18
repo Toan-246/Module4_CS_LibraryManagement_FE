@@ -13,7 +13,7 @@ function drawReturnTickets() {
             let content = "";
             for (let i = 0; i < returnTickets.length; i++) {
                 content += `<tr>
-               <td>${i + 1}</td>
+               <td>${i + 1 }</td>
                <td>${returnTickets[i].id}</td>
                <td>${returnTickets[i].borrowTicket.id}</td>
                <td>${returnTickets[i].borrowTicket.borrowDate}</td>

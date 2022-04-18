@@ -19,7 +19,6 @@ function getCurrentPage() {
         url: apiSource + `/page/${pageNumber}`,
         success: function (page) {
 
-            console.log(hasPrevious, hasNext);
             let books = page.content
             let content = '';
             for (let i = 0; i < books.length; i++) {
@@ -375,7 +374,7 @@ function getAllPublisher() {
             let content = '';
             for (let i = 0; i < publisheres.length; i++) {
                 content += `<li class="nav-item">
-                                        <a href="#" class="nav-link" onclick="getCurrentPageByPublisher(${publisheres[i]})">
+                                        <a href="#" class="nav-link" onclick="getCurrentPageByPublisher('${publisheres[i]}')">
                                             <i class="far fa-dot-circle nav-icon"></i>
                                             ${publisheres[i]}
                                         </a>
