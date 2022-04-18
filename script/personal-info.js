@@ -108,7 +108,7 @@ function saveUserInfo() {
             drawUserInfo();
         },
         error: function (error) {
-            displayFailureToast(error.responseJSON.message);
+            displayFailureToast(error.responseText.message);
         }
     })
 
