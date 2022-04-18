@@ -107,8 +107,8 @@ function saveUserInfo() {
             displaySuccessToast('Cập nhật thành công');
             drawUserInfo();
         },
-        error: function () {
-            displayFailureToast('Cập nhật thất bại');
+        error: function (error) {
+            displayFailureToast(error.responseJSON.message);
         }
     })
 

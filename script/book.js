@@ -179,6 +179,7 @@ function createNewBook() {
         processData:false,
         contentType: false,
         success: function () {
+            getAllPublisher();
             getCurrentPage();
             showSuccessMessage('Tạo mới thành công');
         },
@@ -202,8 +203,9 @@ function deleteBook(id) {
             'Authorization': 'Bearer ' + currentUser.token
         },
         success: function () {
-            getCurrentPage()
-            showSuccessMessage('Xóa thành công')
+            getAllPublisher();
+            getCurrentPage();
+            showSuccessMessage('Xóa thành công');
         },
         error: function () {
             showErrorMessage('Xóa thất bại')
@@ -266,8 +268,9 @@ function editBook(id) {
         processData:false,
         contentType: false,
         success: function () {
-            getCurrentPage()
-            showSuccessMessage('Cập nhật thành công')
+            getAllPublisher();
+            getCurrentPage();
+            showSuccessMessage('Cập nhật thành công');
         },
         error: function () {
             showErrorMessage('Cập nhật thất bại')

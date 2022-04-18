@@ -19,8 +19,12 @@
     <link href="/plugin-toastr/toastr.css" rel="stylesheet">
     <script src="/plugin-toastr/toastr.js"></script>
 
+    <link rel="stylesheet" href="plugin-rmodal/src/rmodal.css" type="text/css" />
+    <script type="text/javascript" src="plugin-rmodal/src/rmodal.ts"></script>
+
     <script type="text/javascript" src="js/functions.js"></script>
     <link href="/style/index-page.css" rel="stylesheet">
+
 </head>
 <body>
 <!-- Header -->
@@ -38,7 +42,8 @@
     <!-- Login-details -->
     <div id="login-details">
         <p>Xin chào, <a href="#" id="username-holder">Guest</a> .</p>
-        <p><a href="/Module4_CS_LibraryManagement_FE/pages/cart.html" class="cart"><img src="css/images/cart-icon.png" alt=""/></a>Cart</p>
+        <p><a href="/Module4_CS_LibraryManagement_FE/pages/cart.html" class="cart"><img src="css/images/cart-icon.png"
+                                                                                        alt=""/></a>Cart</p>
     </div>
     <!-- End Login-details -->
 </div>
@@ -203,31 +208,27 @@
 </div>
 <!-- End Footer -->
 
-
-
-<div class="modal fade" id="modal-default">
-    <div class="modal-dialog">
+<div id="modal" class="modal">
+    <div class="modal-dialog animated">
         <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Default Modal</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>One fine body&hellip;</p>
-            </div>
-            <div class="modal-footer justify-content-between">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-</div>
-<!-- /.modal -->
+            <form class="form-horizontal" method="get">
+                <div class="modal-header">
+                    <strong>Hello Dialog</strong>
+                </div>
 
+                <div class="modal-body">
+                    Test Content
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-primary" type="submit" onclick="modal.close();">
+                        Close
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 <script src="script/init.js"></script>
 <script src="script/index.js"></script>
