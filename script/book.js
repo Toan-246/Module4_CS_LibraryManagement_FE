@@ -158,6 +158,7 @@ function createNewBook() {
     let description = $('#description').val();
     let publisher = $('#publisher').val();
     let image = $('#image').prop('files')[0];
+    if (image == undefined) image = new File([""], "empty-file");
     let status = $('#status').val();
     let category = $('#category').val();
     let book = new FormData();
@@ -179,11 +180,12 @@ function createNewBook() {
         processData:false,
         contentType: false,
         success: function () {
+            getAllPublisher();
             getCurrentPage();
             showSuccessMessage('Tạo mới thành công');
         },
-        error: function () {
-            showErrorMessage("Tạo mới thất bại");
+        error: function (errorMessage) {
+            showErrorMessage(errorMessage.responseJSON.message);
         }
     })
 }
@@ -202,8 +204,9 @@ function deleteBook(id) {
             'Authorization': 'Bearer ' + currentUser.token
         },
         success: function () {
-            getCurrentPage()
-            showSuccessMessage('Xóa thành công')
+            getAllPublisher();
+            getCurrentPage();
+            showSuccessMessage('Xóa thành công');
         },
         error: function () {
             showErrorMessage('Xóa thất bại')
@@ -266,8 +269,9 @@ function editBook(id) {
         processData:false,
         contentType: false,
         success: function () {
-            getCurrentPage()
-            showSuccessMessage('Cập nhật thành công')
+            getAllPublisher();
+            getCurrentPage();
+            showSuccessMessage('Cập nhật thành công');
         },
         error: function () {
             showErrorMessage('Cập nhật thất bại')

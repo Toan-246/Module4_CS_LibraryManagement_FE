@@ -122,7 +122,7 @@ function showModalReturnTicket(returnTicketId) {
             let borrowTicketId = returnTicket.borrowTicket.id;
             $.ajax({
                 type: 'GET',
-                url: `http://localhost:8080/api/borrowtickets/${borrowTicketId}/books`,
+                url: `http://localhost:8080/api/borrowTickets/${borrowTicketId}/books`,
                 headers: {
                     'Authorization': 'Bearer ' + currentUser.token
                 },
