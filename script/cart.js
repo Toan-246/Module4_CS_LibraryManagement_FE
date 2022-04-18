@@ -97,7 +97,7 @@ function createBorrowTicket() {
             drawCart();
         },
         error: function (errorMessage) {
-            displayFailureToast(errorMessage.responseJSON.message);
+            displayFailureToast(errorMessage.message);
         }
     });
 

@@ -33,7 +33,8 @@ function getCurrentPage() {
             <td>${books[i].category == null ? '' : books[i].category.name}</td>
             <td><button class="btn btn-primary"data-toggle="modal"
                                         data-target="#input-book" onclick="showEditForm(${books[i].id})"><i class="fa fa-edit"></i></button></td>
-            
+            <td><button class="btn btn-danger" data-toggle="modal"
+                                        data-target="#delete-book" onclick="showDeleteForm(${books[i].id})"><i class="fa fa-trash"></i></button></td>
         </tr>`
             }
             $('#book-table').html(content);
@@ -92,7 +93,7 @@ function searchBookByName() {
             <td>${books[i].publisher}</td>
             <td>${books[i].status}</td>
             <td>${books[i].category == null ? '' : books[i].category.name}</td>
-            <td><button class="btn btn-primary"data-toggle="modal"
+            <td><button class="btn btn-primary" data-toggle="modal"
                                         data-target="#input-book" onclick="showEditForm(${books[i].id})"><i class="fa fa-edit"></i></button></td>
             <td><button class="btn btn-danger" data-toggle="modal"
                                         data-target="#delete-book" onclick="showDeleteForm(${books[i].id})"><i class="fa fa-trash"></i></button></td>
@@ -107,8 +108,6 @@ function searchBookByName() {
             let currentPageNumber = pageNumber + 1
             let nextPageNumber = currentPageNumber + 1
             let previousPageNumber = currentPageNumber - 1
-
-
 
             let content1 = '';
             content1 += `<ul class="pagination justify-content-end">
